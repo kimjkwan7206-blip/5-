@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kjk의 경기규칙 IFAB Q&A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* A little extra smoothness for the accordion */
+        [data-accordion-content] {
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-green-700 dark:text-green-400">⚽️ kjk의 경기규칙 IFAB Q&A 📜</h1>
+            <p class="mt-4 text-xl md:text-2xl font-semibold text-gray-600 dark:text-gray-300">5~6조: 주심 및 기타 심판진</p>
+        </header>
+
+        <div class="sticky top-0 z-10 bg-gray-100 dark:bg-gray-900 py-4 mb-6">
+            <input type="text" id="searchInput" placeholder="🔍 키워드로 질문 검색 (예: DOGSO, 부상, 어드밴티지)" class="w-full p-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500">
+             <div class="flex justify-center space-x-4 mt-4">
+                <button id="expandAll" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">📂 모두 열기</button>
+                <button id="collapseAll" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">📁 모두 닫기</button>
+            </div>
+        </div>
+        
+        <main id="qa-container">
+            <!-- 5조 주심 -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 border-b-2 border-green-500 pb-2">⚖️ 5조: 주심 (The Referee)</h2>
+                <div class="space-y-4">
+                    <!-- Q&A Items will be dynamically inserted here -->
+                </div>
+            </section>
+            
+            <!-- 6조 부심 -->
+             <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6 border-b-2 border-green-500 pb-2">🚩 6조: 기타 심판진 (The Other Match Officials)</h2>
+                <div class="space-y-4">
+                     <!-- Q&A Items will be dynamically inserted here -->
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>내용의 출처는 "IFAB의 Q&A"입니다.</p>
+        </footer>
+    </div>
+
+<script>
+    const qaData = [
+        {
+            category: 5,
+            number: 1,
+            title: "DOGSO 반칙에 대한 징계 조치 및 경기 재개",
+            scenario_en: "A defender recklessly tackles an attacker outside the penalty area and this foul denies the opponent an obvious goal-scoring opportunity (DOGSO).",
+            decision_en: "What is the correct decision if the advantage is not applied? The referee stops play and awards a direct free kick. When two offences are committed at the same time, the more serious offence is punished, so the defender receives a red card for the DOGSO offence rather than a yellow card for the reckless foul.",
+            scenario_ko: "수비수가 페널티 에어리어 밖에서 공격수에게 무모하게 태클을 했고, 이 파울은 상대팀의 명백한 득점 기회(DOGSO)를 저지했습니다.",
+            decision_ko: "어드밴티지가 적용되지 않는다면 올바른 판정은 무엇입니까? 주심은 플레이를 중단시키고 직접 프리킥을 부여합니다. 두 가지 반칙이 동시에 발생했을 때 더 심한 반칙을 처벌하므로, 수비수는 무모한 파울에 대한 경고(옐로카드) 대신 DOGSO 반칙에 대해 퇴장(레드카드) 조치를 받습니다.",
+            key_point: "주심은 동시에 여러 반칙이 일어나면 처벌, 플레이 재개, 신체적 강도, 전술적 영향을 고려해 더 심한 반칙으로 처벌해야 합니다. 페널티 에어리어 밖에서 의도적인 반칙으로 명백한 득점 기회를 저지하는 것은 퇴장성 반칙에 해당합니다."
+        },
+        {
+            category: 5,
+            number: 2,
+            title: "부상 선수 발생 시 조치 및 플레이 재개 방법",
+            scenario_en: "An attacking team player falls to the ground without being fouled while their team-mate has possession of the ball near their opponents’ penalty area.",
+            decision_en: "What is the referee’s decision if the player is seriously injured and there is no goal-scoring opportunity for the attacking team? The referee stops play to ensure that the player receives medical attention. Depending on the injury, the player may be assessed and/or treated on the field of play but must then leave the field before play is restarted. As the injury is not the result of an offence, the referee restarts play with a dropped ball to a player of the attacking team at the position of the ball when play was stopped.",
+            scenario_ko: "공격팀의 동료 선수가 상대팀 페널티 에어리어 근처에서 볼을 소유하고 있는 동안, 공격팀 선수가 파울을 당하지 않고 그라운드에 쓰러졌습니다.",
+            decision_ko: "해당 선수가 심각한 부상을 입었고 공격팀에게 득점 기회가 없다면 주심의 판정은 무엇입니까? 주심은 선수가 의료진의 처치를 받을 수 있도록 플레이를 중단시킵니다. 부상 정도에 따라 선수는 경기장 안에서 검진 및/또는 치료를 받을 수 있지만, 경기가 재개되기 전에 반드시 경기장을 떠나야 합니다. 부상이 반칙의 결과가 아니므로, 주심은 플레이가 중단되었을 때 볼이 있던 위치에서 공격팀의 선수 한 명에게 드롭볼을 실시하여 플레이를 재개합니다.",
+            key_point: "선수가 심각한 부상을 당했다면 플레이를 중단하고 선수를 경기장 밖으로 내보내야 하며, 부상이 반칙으로 인한 것이 아니라면 중단되었을 때 볼의 위치에서 드롭볼로 재개합니다."
+        },
+        {
+            category: 5,
+            number: 3,
+            title: "골킥 시 재차 터치 반칙과 DOGSO 및 득점 인정 여부",
+            scenario_en: "While taking a goal kick, the goalkeeper kicks the ball only a few metres. As an opponent then enters the penalty area and runs towards the ball, the goalkeeper kicks the ball again (before it has touched any other player). This second touch prevents the opponent from gaining control of the ball, denying them an obvious goal-scoring opportunity; however, the ball rebounds off the opponent’s leg and goes into the goal.",
+            decision_en: "What is the correct decision? The referee applies the advantage and awards a goal. The goalkeeper is cautioned (yellow card) but is not sent off because the obvious goal-scoring opportunity was restored.",
+            scenario_ko: "골킥을 실시하는 동안, 골키퍼가 볼을 단 몇 미터만 찼습니다. 그 후 상대 선수가 페널티 에어리어 안으로 들어와 볼을 향해 달려가자, 골키퍼가 (다른 선수가 볼을 터치하기 전에) 볼을 다시 찼습니다. 이 두 번째 터치는 상대 선수가 볼을 컨트롤하는 것을 방해하여 명백한 득점 기회를 저지했지만, 볼이 상대 선수의 다리에 맞고 굴절되어 골문 안으로 들어갔습니다.",
+            decision_ko: "올바른 판정은 무엇입니까? 주심은 어드밴티지를 적용하여 득점을 인정합니다. 골키퍼는 경고(옐로카드)를 받지만, 명백한 득점 기회가 회복되었으므로 퇴장당하지는 않습니다.",
+            key_point: "상대팀의 명백한 득점 기회를 저지했음에도 불구하고 득점이 된 경우, 주심은 해당 선수에게 퇴장 대신 반스포츠적 행위로 경고를 주어야 합니다."
+        },
+        {
+            category: 5,
+            number: 4,
+            title: "어드밴티지 미실현 시 판정 번복 및 경기 재개",
+            scenario_en: "A player from Team A is carelessly tackled by an opponent from Team B in the middle of the field. The referee allows play to continue because the fouled player quickly gets up and regains possession of the ball; however, another Team B player intervenes and immediately kicks the ball out of play for a throw-in on Team A’s half.",
+            decision_en: "What is the decision? The referee waited a few seconds to allow a possible advantage to develop. As Team A did not benefit from the decision to continue play, the referee returns to the original offence and awards a direct free kick to Team A from the position where the tackle occurred.",
+            scenario_ko: "경기장 중앙에서 A팀 선수가 B팀 상대 선수에게 조심성 없이 태클을 당했습니다. 주심은 파울을 당한 선수가 재빨리 일어나 볼 소유권을 다시 확보했기 때문에 플레이를 계속하도록 허용했습니다. 그러나 다른 B팀 선수가 개입하여 즉시 볼을 경기장 밖으로 차내어 A팀 진영에서 스로인이 선언되었습니다.",
+            decision_ko: "판정은 무엇입니까? 주심은 어드밴티지가 실현될 수 있도록 몇 초간 기다렸습니다. A팀이 플레이를 계속한 결정으로 이득을 얻지 못했기 때문에, 주심은 원래의 반칙으로 돌아가 태클이 발생한 지점에서 A팀에게 직접 프리킥을 부여합니다.",
+            key_point: "반칙이 일어났으나 어드밴티지가 즉시 또는 몇 초 안에 이루어지지 않은 것이 확실하면 해당 반칙으로 처벌해야 합니다."
+        },
+        {
+            category: 5,
+            number: 5,
+            title: "주장의 판정 항의에 대한 징계 조치",
+            scenario_en: "After the referee awards a free kick against Team A, the captain approaches the referee and shows dissent while the referee is explaining the decision.",
+            decision_en: "What action can be taken against the captain? Referees’ decisions must always be respected and a team captain can be punished for dissent, just like any other player. Therefore, if a captain fails to interact with the referee in a respectful manner, a caution (yellow card) is issued.",
+            scenario_ko: "주심이 A팀에게 프리킥을 선언한 후, 주심이 판정을 설명하는 동안 주장이 주심에게 접근하여 항의를 표시합니다.",
+            decision_ko: "주장에 대해 어떤 조치를 취할 수 있습니까? 주심의 판정은 항상 존중받아야 하며, 팀 주장은 다른 선수들과 마찬가지로 항의에 대해 처벌받을 수 있습니다. 따라서 주장이 존중하는 태도로 주심과 소통하지 못한다면 경고(옐로카드)가 주어집니다.",
+            key_point: "선수가 말 또는 행동으로 항의하면 경고가 주어지며, 팀 주장은 특별한 특권 없이 팀의 행동에 대해 책임을 져야 하므로 반드시 존중하는 태도를 유지해야 합니다."
+        },
+        {
+            category: 5,
+            number: 6,
+            title: "하프타임 중 터널 내 폭력적 행위에 대한 조치",
+            scenario_en: "After the first half has ended, the referee sees a player striking an opponent in the tunnel on the way to the dressing rooms.",
+            decision_en: "What is the correct procedure? The referee has the power to show cards during the half-time interval, even if the offence occurs off the field of play. The player is shown a red card for violent conduct, takes no further part in the match, and cannot be replaced. Since the card is shown off the field, the referee must inform both teams and, where appropriate, ensure an announcement is made to the spectators before the second half begins.",
+            scenario_ko: "전반전이 종료된 후, 주심은 한 선수가 탈의실로 가는 터널에서 상대 선수를 때리는 것을 보았습니다.",
+            decision_ko: "올바른 절차는 무엇입니까? 주심은 반칙이 경기장 밖에서 발생하더라도 하프타임 휴식 시간 동안 카드를 제시할 권한이 있습니다. 해당 선수는 난폭한 행위로 퇴장(레드카드) 조치되며, 경기에 더 이상 참여할 수 없고 대체될 수 없습니다. 카드가 경기장 밖에서 제시되었으므로, 주심은 양 팀에 이 사실을 알리고 필요한 경우 후반전이 시작되기 전에 관중에게 발표해야 합니다.",
+            key_point: "주심은 하프타임 휴식 시간을 포함해 경기 종료 후 경기장을 떠날 때까지 징계 조치를 할 권한을 가지며, 경기 시작 후 퇴장당한 선수는 대체될 수 없습니다."
+        },
+        {
+            category: 5,
+            number: 7,
+            title: "경기 종료 후 발생한 언어적 항의에 대한 징계 조치",
+            scenario_en: "After the final whistle has been blown, a player argues with the referee on the field of play and clearly shows dissent verbally, without attempting to touch the referee.",
+            decision_en: "What action can be taken against the player? The referee has the authority to take disciplinary action until leaving the field of play. Even though the match has ended, an appropriate card may still be shown if it helps manage the situation or calm the player. Verbal dissent is punished with a caution (yellow card), unless the words are offensive, insulting, or abusive (red card). Regardless of whether the card is shown or not, the referee must report the offence to the appropriate authorities.",
+            scenario_ko: "종료 휘슬이 울린 후, 한 선수가 경기장에서 주심과 논쟁하며 주심을 건드리려 하지는 않았으나 말로 명백하게 항의를 표시합니다.",
+            decision_ko: "해당 선수에게 어떤 조치를 취할 수 있습니까? 주심은 경기장을 떠날 때까지 징계 조치를 취할 권한이 있습니다. 경기가 끝났더라도 상황을 관리하거나 선수를 진정시키는 데 도움이 된다면 적절한 카드를 제시할 수 있습니다. 언어적 항의는 경고(옐로카드)로 처벌되지만, 그 언어가 공격적, 모욕적 또는 욕설이라면 퇴장(레드카드) 대상입니다. 카드를 제시했는지 여부와 상관없이 주심은 해당 반칙을 관련 기관에 보고해야 합니다.",
+            key_point: "주심은 경기 종료 후 경기장을 떠날 때까지 징계 조치를 할 권한을 가지며, 모든 불법 행위에 대해 보고서를 제출해야 합니다."
+        },
+        {
+            category: 5,
+            number: 8,
+            title: "경기 시작 전 경고 후 경기 중 추가 경고 발생 시 조치",
+            scenario_en: "A player is cautioned (shown a yellow card, YC) for unsporting behaviour between the toss of a coin and the kick-off.",
+            decision_en: "What is the correct procedure if the same player receives another YC during a match? The referee has the power to show red and yellow cards from the moment they enter the field at the start of the match. Therefore, a caution (YC) issued between the coin toss and the kick-off is carried into the match, and if they receive a second YC during the match the player is sent off (shown a red card).",
+            scenario_ko: "동전 토스와 킥오프 사이에 한 선수가 반스포츠적 행위로 경고(YC)를 받았습니다.",
+            decision_ko: "해당 선수가 경기 도중 또 다른 경고를 받는다면 올바른 절차는 무엇입니까? 주심은 경기를 시작하기 위해 경기장에 들어서는 순간부터 퇴장(레드카드)과 경고(옐로카드)를 제시할 권한이 있습니다. 따라서 동전 토스와 킥오프 사이에 발령된 경고(YC)는 경기로 이어지며, 경기 중 두 번째 경고를 받으면 해당 선수는 퇴장(레드카드 제시)당합니다.",
+            key_point: "주심은 경기 전 검사를 위해 경기장에 들어설 때부터 징계 조치를 할 권한을 가지며, 한 경기에서 두 번째 경고를 받은 선수는 퇴장 조치됩니다."
+        },
+        {
+            category: 5,
+            number: 9,
+            title: "관중의 휘슬 소리로 인한 경기 중단 및 재개",
+            scenario_en: "A player is running with the ball near the halfway line but suddenly stops and picks it up with their hands because someone in the crowd has blown a whistle (not the referee or anyone on the team lists).",
+            decision_en: "What is the correct decision? The referee stops play and drops the ball for the player or one of their team-mates at its position when play was stopped.",
+            scenario_ko: "한 선수가 중앙선 근처에서 볼을 가지고 달리던 중, 관중석에서 누군가 휘슬을 불자(주심이나 심판진이 아님) 갑자기 멈춰서 볼을 손으로 집어 들었습니다.",
+            decision_ko: "올바른 판정은 무엇입니까? 주심은 플레이를 중단하고, 플레이가 중단되었을 때 볼이 있던 위치에서 해당 선수나 그 팀의 동료 선수 한 명에게 드롭볼을 실시합니다.",
+            key_point: "관중이 휘슬을 불어 플레이를 방해한 경우, 주심은 플레이를 중단하고 드롭볼로 재개해야 합니다."
+        },
+        {
+            category: 5,
+            number: 10,
+            title: "공중 경합 중 충돌로 인한 플레이 중단 및 재개",
+            scenario_en: "A defender and an attacker jump for a header in the middle of the field and collide in the air while competing legally for the ball (neither of them touches it). After that, both players fall to the ground and appear to be seriously injured so the referee stops play to allow the players to be assessed/treated accordingly.",
+            decision_en: "How will play be restarted if the ball was outside the penalty area when play was stopped? Play will be restarted with a dropped ball (as outlined in Law 8).",
+            scenario_ko: "경기장 중앙에서 수비수와 공격수가 볼을 향해 정당하게 경합하며 헤더를 하기 위해 점프했다가 공중에서 충돌했습니다(둘 다 볼에 닿지 않음). 그 후 두 선수 모두 지면에 떨어져 심각한 부상을 입은 것으로 보여, 주심은 선수들이 검진/치료를 받을 수 있도록 플레이를 중단시켰습니다.",
+            decision_ko: "플레이가 중단되었을 때 볼이 페널티 에어리어 밖에 있었다면 경기는 어떻게 재개됩니까? (경기규칙 제8조에 명시된 대로) 드롭볼로 플레이가 재개됩니다.",
+            key_point: "선수의 부상이 반칙으로 인한 것이 아니라면 플레이 재개는 드롭볼입니다. 페널티 에어리어 밖이라면 볼이 있던 위치에서 실시합니다."
+        },
+        {
+            category: 5,
+            number: 11,
+            title: "관중이 던진 물체에 의한 플레이 방해와 재개 판정",
+            scenario_en: "While the ball is in play, a spectator throws a bottle onto the field towards a player who is running with the ball, close to the touchline. The player stops running to avoid the bottle.",
+            decision_en: "What is the referee’s decision? The object interfered with play so the referee stops a match and has the bottle removed from the field. If the match is not suspended or abandoned for safety reasons, play restarts with a dropped ball (as outlined in Law 8).",
+            scenario_ko: "볼이 인플레이 상황일 때, 한 관중이 터치라인 근처에서 볼을 가지고 달리는 선수를 향해 경기장 안으로 병을 던졌습니다. 선수는 병을 피하기 위해 달리기를 멈췄습니다.",
+            decision_ko: "주심의 판정은 무엇입니까? 물체가 플레이를 방해했으므로 주심은 경기를 중단시키고 경기장에서 병을 제거하도록 합니다. 안전상의 이유로 경기가 중단되거나 포기되지 않는다면, (제8조에 명시된 대로) 드롭볼로 플레이를 재개합니다.",
+            key_point: "외부 요인이 플레이를 방해할 경우에만 경기를 중단하며, 이 경우 플레이는 드롭볼로 재개합니다."
+        },
+        {
+            category: 5,
+            number: 12,
+            title: "심각한 부상 발생 시 드롭볼을 통한 경기 재개 절차",
+            scenario_en: "When the ball is in play in the middle of the field, the referee notices that a player lies on the ground and stops play because he/she thinks that the player is seriously injured. The player leaves the field for treatment.",
+            decision_en: "How is play restarted? Play is restarted with a dropped ball for one player of the team that has or would have gained possession if this can be determined by the referee; otherwise, it is dropped for one player of the team that last touched it. The ball is dropped at its position when play was stopped.",
+            scenario_ko: "경기장 중앙에서 볼이 인플레이 상황일 때, 주심은 한 선수가 그라운드에 쓰러져 있는 것을 발견하고 그 선수가 심각하게 부상당했다고 생각하여 플레이를 중단시켰습니다. 그 선수는 치료를 위해 경기장을 떠납니다.",
+            decision_ko: "플레이는 어떻게 재개됩니까? 주심이 명확히 판단할 수 있는 경우, 볼을 소유하고 있었거나 소유했을 것으로 보이는 팀의 선수 한 명에게 드롭볼을 실시하여 플레이를 재개합니다. 그렇지 않은 경우 마지막으로 볼을 터치한 팀의 선수 한 명에게 드롭볼을 실시합니다. 드롭볼은 플레이가 중단되었을 때 볼의 위치에서 실시합니다.",
+            key_point: "페널티 에어리어 바깥에서의 드롭볼은 심판이 명확히 판단할 수 있다면 볼을 소유했을 것으로 보이는 팀에게 실시하는 것이 보다 공정합니다."
+        },
+        {
+            category: 5,
+            number: 13,
+            title: "스로인 시 발의 위치 위반에 대한 어드밴티지 적용",
+            scenario_en: "At the moment of delivering the ball at a throw-in, a player has one foot outside the field of play and the other foot fully inside the field (not touching the touchline). The ball then enters the field and is intercepted by an opponent.",
+            decision_en: "What is the correct decision? According to Law 15, the thrower must have part of each foot on the touchline or on the ground outside the touchline. Although the throw-in was not taken correctly, the referee may allow play to continue if the opposing team will benefit from the advantage.",
+            scenario_ko: "스로인을 하기 위해 볼을 던지는 순간, 선수의 한 발은 경기장 밖에 있고 다른 한 발은 (터치라인에 닿지 않은 채) 완전히 경기장 안에 있었습니다. 그 후 볼은 경기장 안으로 들어갔고 상대 선수에 의해 가로채졌습니다.",
+            decision_ko: "올바른 판정은 무엇입니까? 경기규칙 제15조에 따르면, 스로인을 하는 선수는 두 발의 일부가 터치라인 위 또는 터치라인 밖의 지면에 있어야 합니다. 비록 스로인이 올바르게 실시되지 않았더라도, 상대 팀이 어드밴티지를 통해 이득을 얻게 된다면 주심은 플레이를 계속하도록 허용할 수 있습니다.",
+            key_point: "스로인 시 선수는 반드시 두 발의 일부가 터치라인 위 또는 밖의 지면에 있어야 하지만, 절차 위반 시에도 상대 팀에게 이득이 된다면 어드밴티지를 적용할 수 있습니다."
+        },
+        {
+            category: 5,
+            number: 14,
+            title: "하프타임 중 경기장 밖 항의에 대한 징계 및 공지 절차",
+            scenario_en: "After the first half has ended, a player argues with the referee, verbally protesting against a referee’s decision made earlier in the match. This occurs while both the player and referee are outside the field of play, heading towards the tunnel.",
+            decision_en: "What is the correct procedure in this situation? According to Law 5, the referee has the power to show cards during the half-time interval. Therefore, the player must be cautioned (yellow card) for dissent. If the card is shown off the field of play, the referee must inform both teams and, where appropriate, ensure that an announcement is made to spectators before the second half begins.",
+            scenario_ko: "전반전이 종료된 후, 한 선수가 경기 중 내려진 주심의 판정에 대해 말로 항의하며 주심과 논쟁합니다. 이 상황은 선수와 주심 모두 경기장 밖 터널을 향해 이동하는 중에 발생했습니다.",
+            decision_ko: "이 상황에서의 올바른 절차는 무엇입니까? 경기규칙 제5조에 따르면, 주심은 하프타임 휴식 시간 동안 카드를 제시할 권한이 있습니다. 따라서 해당 선수는 항의로 인해 반드시 경고(옐로카드)를 받아야 합니다. 카드가 경기장 밖에서 제시된 경우, 주심은 양 팀에 이를 알려야 하며 필요한 경우 후반전이 시작되기 전에 관중에게 발표해야 합니다.",
+            key_point: "주심은 하프타임 휴식 시간 중에도 카드를 제시할 수 있으며, 필드 밖에서 징계가 내려진 경우 양 팀에 알리고 관중에게 공식적으로 발표해야 할 의무가 있습니다."
+        },
+        {
+            category: 5,
+            number: 15,
+            title: "무모한 태클 후 어드밴티지 상황에서의 추가 반칙에 대한 처벌",
+            scenario_en: "A defender recklessly tackles an attacker. The referee applies advantage because the attacker quickly gets up and continues running with the ball. The defender then chases the attacker, pulls their shirt and thus stops a promising attack (SPA) outside the penalty area.",
+            decision_en: "What is the correct decision? The referee stops play and awards a direct free kick from the position of the shirt-pulling offence. Since two separate cautionable offences have occurred, even though close together, the defender must receive two cautions: one for the reckless challenge and another for SPA. The defender is therefore shown two yellow cards, followed by a red card, and is sent off.",
+            scenario_ko: "수비수가 공격수에게 무모하게 태클을 했습니다. 주심은 파울을 당한 선수가 재빨리 일어나 볼을 가지고 계속 달렸기 때문에 어드밴티지를 적용했습니다. 그 후 수비수는 공격수를 쫓아가 셔츠를 잡아당겨 페널티 에어리어 밖에서 유망한 공격(SPA)을 저지했습니다.",
+            decision_ko: "올바른 판정은 무엇입니까? 주심은 플레이를 중단시키고 셔츠를 잡아당기는 반칙이 발생한 위치에서 직접 프리킥을 부여합니다. 서로 밀접하게 발생했지만 두 가지 별개의 경고성 반칙이 일어났으므로, 수비수는 무모한 도전에 대해 하나, 유망한 공격 저지(SPA)에 대해 또 하나, 총 두 개의 경고를 받아야 합니다. 따라서 수비수에게는 두 장의 옐로카드와 이어서 퇴장(레드카드)이 제시됩니다.",
+            key_point: "두 가지 다른 경고성 반칙이 발생한 경우(거의 동시에 발생한 경우 포함) 경고 두 장을 주어야 합니다."
+        },
+        {
+            category: 5,
+            number: 16,
+            title: "무모한 태클로 유망한 공격 저지 시 주된 반칙 처벌",
+            scenario_en: "A defender from Team A recklessly tackles an opponent near the touchline and thus stops a promising attack by Team B. The referee stops play because there is no advantage for Team B.",
+            decision_en: "What is the correct restart of play and disciplinary sanction? The referee awards a direct free kick to Team B and cautions the defender for the reckless challenge. When two offences are committed at the same time, only one yellow card is shown, as the referee punishes the more serious offence. In this case, the physical, reckless foul is more serious than the tactical offence of stopping a promising attack.",
+            scenario_ko: "A팀 수비수가 터치라인 근처에서 상대 선수에게 무모하게 태클을 하여 B팀의 유망한 공격을 저지했습니다. 주심은 B팀에게 어드밴티지가 없으므로 플레이를 중단시켰습니다.",
+            decision_ko: "올바른 경기 재개 방법과 징계 조치는 무엇입니까? 주심은 B팀에게 직접 프리킥을 부여하고, 무모한 도전을 한 수비수에게 경고를 줍니다. 두 가지 반칙이 동시에 발생했을 때 주심은 더 심한 반칙을 처벌하므로 단 한 장의 옐로카드만 제시됩니다. 이 경우, 신체적인 무모한 파울이 유망한 공격을 저지한 전술적 반칙보다 더 중합니다.",
+            key_point: "동시에 여러 반칙이 일어나면 더 심한 반칙으로 처벌합니다. 신체적 무모한 파울은 전술적인 유망한 공격 저지보다 더 심각한 행위로 간주됩니다."
+        },
+        {
+            category: 5,
+            number: 17,
+            title: "페널티 에어리어 내 무모한 태클 시 부상 수비수 처리 절차",
+            scenario_en: "The referee stops play and awards a penalty kick because a defender recklessly tackles an attacker inside the defender’s penalty area. The attacker is able to continue playing and remains on the field; however, the defender is injured and requires medical attention.",
+            decision_en: "What is the correct procedure? The referee cautions the defender (yellow card) and requires them to leave the field of play for treatment. The defender may only re-enter after play has restarted and cannot be on the field when the penalty kick is taken.",
+            scenario_ko: "수비수가 자신의 페널티 에어리어 안에서 공격수에게 무모하게 태클을 했기 때문에 주심은 플레이를 중단시키고 페널티킥을 부여했습니다. 공격수는 경기를 계속할 수 있어 경기장에 남아있지만, 수비수는 부상을 입어 의료진의 처치가 필요합니다.",
+            decision_ko: "올바른 절차는 무엇입니까? 주심은 수비수에게 경고(옐로카드)를 주고 치료를 위해 경기장 밖으로 나가도록 지시합니다. 수비수는 경기가 재개된 후에만 다시 입장할 수 있으며, 페널티킥이 실시될 때 경기장에 있을 수 없습니다.",
+            key_point: "부상당한 선수는 경기장 밖으로 나가야 하며, 페널티킥 시 키커와 양 팀 골키퍼를 제외한 모든 선수는 페널티 에어리어 밖에 위치해야 하므로 치료 중인 선수는 페널티킥 실시에 참여할 수 없습니다."
+        },
+        {
+            category: 5,
+            number: 18,
+            title: "퇴장 결정 후 주심에게 욕설을 한 경우의 절차",
+            scenario_en: "A player commits a second cautionable offence in the same match, so the referee shows a second yellow card and a red card to the offender. The player does not agree with the decision and uses offensive language towards the referee.",
+            decision_en: "What is the correct procedure? The player is sent off from the field of play and its surroundings. A second red card is not shown but the subsequent (verbal) offence must be included in the post-match report. Any additional sanction/suspension resulting from the offensive language will be decided by the appropriate disciplinary body.",
+            scenario_ko: "선수가 같은 경기에서 두 번째 경고성 반칙을 범하여, 주심이 반칙자에게 두 번째 옐로카드와 레드카드를 보여준다. 해당 선수는 판정에 동의하지 않고 주심에게 모욕적인 언어를 사용한다.",
+            decision_ko: "이 경우 올바른 절차는 무엇인가? 선수는 경기장 및 그 주변에서 퇴장당한다. 두 번째 레드카드는 제시하지 않으나, 이후에 발생한 (구두) 반칙은 경기 후 보고서에 반드시 포함되어야 한다. 모욕적인 언어로 인한 추가적인 징계나 출전 정지는 관련 징계 기구에 의해 결정될 것이다.",
+            key_point: "주심은 경기 종료 후 경기장을 떠날 때까지 징계 조치를 할 권한을 가지며, 모든 불법 행위에 대해 보고해야 한다."
+        },
+        {
+            category: 5,
+            number: 19,
+            title: "유망한 공격 저지 반칙으로 인한 부상 선수의 경기장 잔류 여부",
+            scenario_en: "A defender commits a careless tackle against an attacker which stops a promising attack (SPA) in the centre circle. The attacker goes down and appears to be seriously injured.",
+            decision_en: "What is the correct decision? The referee stops play, awards a direct free kick and cautions (yellow card) the defender for the SPA offence. As the injury results from a physical offence for which the opponent is cautioned, the attacker may stay on the field of play after the assessment/treatment, provided it is completed quickly.",
+            scenario_ko: "수비수가 중앙선에서 공격수에게 유망한 공격을 저지(SPA)하는 조심성없는 태클을 범한다. 공격수는 쓰러지고 심각한 부상을 입은 것처럼 보인다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 경기를 중단시키고, 직접 프리킥을 부여하며 유망한 공격 저지(SPA) 반칙에 대해 수비수에게 경고(옐로카드)를 준다. 부상이 상대 선수가 경고를 받은 신체적 반칙으로 인해 발생했으므로, 검진/치료가 신속하게 완료된다면 공격수는 경기장 안에 머물 수 있다.",
+            key_point: "경고 또는 퇴장이 주어지는 신체적 반칙에 한해, 부상당한 선수는 경기장 안에 남아서 신속한 검진과 치료를 받을 수 있다."
+        },
+        {
+            category: 5,
+            number: 20,
+            title: "하프타임 중 경기장에서 발생한 난폭한 행위에 대한 조치",
+            scenario_en: "After the first half has ended, a player argues with an opponent and strikes them in the face on the field of play. The referee is informed by another match official about the incident as they are leaving the field, heading to the tunnel.",
+            decision_en: "What is the correct decision? Law 5 clearly states that the referee has the power to show cards during the half-time interval. The offending player must be shown a red card for violent conduct, be prevented from taking any further part in the match, and cannot be replaced by a substitute. If the red card is not shown on the field of play, the player's team and the opposing team should be informed and, where appropriate, an announcement made for the spectators before the start of the second half.",
+            scenario_ko: "전반전이 끝난 후, 한 선수가 상대 선수와 논쟁을 벌이다 경기장 위에서 상대의 얼굴을 가격한다. 주심은 터널로 향하며 경기장을 떠나던 중 다른 심판진으로부터 이 사건에 대해 보고받는다.",
+            decision_ko: "올바른 판정은 무엇인가? 경기규칙 제5조는 주심이 하프타임 휴식 시간 동안 카드를 보여줄 권한이 있음을 명확히 명시하고 있다. 반칙을 범한 선수에게는 난폭한 행위로 레드카드가 제시되어야 하며, 해당 선수는 더 이상 경기에 참여할 수 없고 교체 선수로 대체될 수도 없다. 만약 경기장 위에서 레드카드가 제시되지 않았다면, 해당 팀과 상대 팀에게 이를 알려야 하며 필요한 경우 후반전 시작 전 관중들에게 안내(어나운싱)를 해야 한다.",
+            key_point: "주심은 하프타임 휴식 시간 중에도 옐로카드와 레드카드를 제시할 수 있는 권한을 가진다."
+        },
+        {
+            category: 5,
+            number: 21,
+            title: "관중의 휘슬 소리로 인해 유망한 공격 상황에서 선수가 멈춘 경우",
+            scenario_en: "A player is carelessly fouled in the middle of the field. Their team retains possession of the ball and continues a promising attack, so the referee signals advantage but the attacking team players stop because someone in the crowd, not the referee or anyone on the team lists, has blown a whistle.",
+            decision_en: "What is the correct decision? As the anticipated advantage did not materialise because of outside interference, the referee awards the (original) direct free kick from the position of the foul.",
+            scenario_ko: "한 선수가 경기장 중앙에서 조심성없는 파울을 당한다. 해당 팀이 볼 소유권을 유지하며 유망한 공격을 이어가자 주심은 어드밴티지 신호를 보냈으나, 주심이나 팀 명단의 인원이 아닌 관중 중 한 명이 휘슬을 부는 바람에 공격팀 선수들이 멈춰 선다.",
+            decision_ko: "올바른 판정은 무엇인가? 외부 요인에 의한 방해로 인해 기대했던 어드밴티지가 실현되지 않았으므로, 주심은 파울이 발생한 지점에서 (원래의) 직접 프리킥을 부여한다.",
+            key_point: "관중이 휘슬을 불어 플레이를 방해한 경우 경기를 중단해야 하며, 기대한 어드밴티지가 즉시 이루어지지 않으면 해당 반칙으로 처벌한다."
+        },
+        {
+            category: 5,
+            number: 22,
+            title: "허락 없이 입장한 선수가 상대팀의 유망한 공격에 방해가 되지 않은 경우",
+            scenario_en: "A defender of Team A, who was treated outside the field of play, is ready to continue and re-enters the field without the required permission. What is the correct decision if Team B starts a promising attack and the player does not interfere with play/opponents?",
+            decision_en: "The referee allows play to continue. When the ball is next out of play, the player of Team A is cautioned (yellow card) for re-entering the field of play without permission and sanctioned for any further offence(s).",
+            scenario_ko: "경기장 밖에서 치료를 받은 A팀 수비수가 복귀 준비를 마친 후 필요한 허락 없이 경기장에 다시 들어온다. 이때 B팀이 유망한 공격을 시작했고 해당 선수가 플레이나 상대 선수에게 방해가 되지 않았다면 올바른 판정은 무엇인가?",
+            decision_ko: "주심은 플레이를 계속하도록 허용한다. 볼이 다음 아웃 오브 플레이가 되었을 때, 허락 없이 경기장에 다시 들어온 이유로 A팀 선수에게 경고(옐로카드) 조치하고 추가적인 반칙에 대해 처벌한다.",
+            key_point: "주심의 허락 없이 경기장에 들어온 선수가 플레이에 방해를 하지 않았다면 즉시 중단시키지 않고 다음 중단 시 경고 조치한다."
+        },
+        {
+            category: 5,
+            number: 23,
+            title: "페널티 에어리어 밖에서 무모한 태클로 명백한 득점 기회를 저지한 경우",
+            scenario_en: "A defender trips an attacker in a reckless manner outside the penalty area. What is the correct decision if this foul denies an opponent an obvious goal-scoring opportunity (DOGSO)?",
+            decision_en: "The referee stops play and awards a direct free kick to the attacking team. In terms of disciplinary sanction, the referee punishes the more serious offence, so it is a red card for the DOGSO offence, not a yellow card for the reckless foul.",
+            scenario_ko: "수비수가 페널티 에어리어 밖에서 무모한 태도로 공격수의 발을 건다. 이 파울이 상대의 명백한 득점 기회를 저지(DOGSO)했다면 올바른 판정은 무엇인가?",
+            decision_ko: "주심은 플레이를 중단시키고 공격팀에게 직접 프리킥을 부여한다. 징계 조치 측면에서 주심은 더 심한 반칙을 처벌하므로, 무모한 파울에 대한 옐로카드가 아닌 DOGSO 반칙에 대한 레드카드를 제시한다.",
+            key_point: "동시에 여러 반칙이 일어나면 더 심한 반칙으로 처벌하며, 페널티 에어리어 밖에서의 DOGSO는 퇴장 사유다."
+        },
+        {
+            category: 5,
+            number: 24,
+            title: "오프사이드 위치의 동료에게 패스한 직후 무모한 파울을 당한 경우",
+            scenario_en: "An attacker passes the ball to a team-mate in an offside position and, immediately after that, is fouled by a defender (reckless tackle outside the penalty area). The team-mate waits for the ball, receives it a few seconds after the foul and then runs towards the opponents’ goal (one-on-one situation).",
+            decision_en: "What is the correct decision? The referee stops play, cautions (yellow card) the defender and awards a direct free kick to the attacking team as the foul has occurred before the offside offence. The referee could not allow play to continue because the attacking team could not benefit from the advantage in this situation as their team-mate was offside.",
+            scenario_ko: "공격수가 오프사이드 위치에 있는 동료에게 볼을 패스하고, 그 직후 수비수에게 파울(페널티 에어리어 밖에서의 무모한 태클)을 당한다. 동료 선수는 볼을 기다려 파울 발생 몇 초 후에 볼을 받은 뒤 상대 골문을 향해 달린다 (일대일 상황).",
+            decision_ko: "올바른 판정은 무엇인가? 오프사이드 반칙이 성립되기 전에 파울이 발생했으므로 주심은 플레이를 중단시키고, 수비수에게 경고(옐로카드)를 주며 공격팀에게 직접 프리킥을 부여한다. 동료 선수가 오프사이드 위치에 있어 공격팀이 이 상황에서 어드밴티지로 이득을 얻을 수 없었기 때문에 주심은 플레이를 계속하게 할 수 없었다.",
+            key_point: "오프사이드 위치에 있는 선수가 볼을 플레이하거나 시도하기 전에 파울을 당했다면, 오프사이드 반칙 전의 파울로 처벌한다."
+        },
+        {
+            category: 5,
+            number: 25,
+            title: "명백한 득점 기회 저지 반칙 후 어드밴티지로 득점이 된 경우의 징계",
+            scenario_en: "A defender competes with an attacker for the ball and commits a careless tackle outside the penalty area which denies the opponent an obvious goal-scoring opportunity. The referee allows play to continue as the ball goes to another attacking player who gains possession of the ball, takes a shot and scores a goal.",
+            decision_en: "What is the correct decision? The referee applies the advantage and awards the goal. The defender is cautioned (yellow card) for unsporting behaviour but is not sent off because, by playing the advantage, the goal-scoring opportunity was restored.",
+            scenario_ko: "수비수가 공격수와 볼을 다투다 페널티 에어리어 밖에서 조심성없는 태클을 범해 상대의 명백한 득점 기회를 저지한다. 볼이 다른 공격수에게 연결되어 볼을 소유하고 슛을 하여 득점하자 주심은 플레이를 계속하도록 허용한다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 어드밴티지를 적용하고 득점을 인정한다. 수비수는 반스포츠적 행위로 경고(옐로카드)를 받지만, 어드밴티지 적용으로 인해 득점 기회가 회복되었으므로 퇴장당하지는 않는다.",
+            key_point: "명백한 득점 기회 저지 반칙 후 어드밴티지가 적용되어 직접 득점이 되었다면, 해당 선수는 퇴장이 아닌 경고를 받는다."
+        },
+        {
+            category: 5,
+            number: 26,
+            title: "페널티킥 상황에서 골키퍼가 먼저 움직여 세이브했으나 리바운드 득점이 된 경우",
+            scenario_en: "At a penalty kick, the goalkeeper has both feet in front of the goal line before the ball is kicked. The goalkeeper makes a save but the ball rebounds from the goalkeeper to an attacking team player who scores a goal.",
+            decision_en: "What is the correct decision? The referee plays the advantage for the goalkeeper’s offence and awards the goal. As the penalty kick is not retaken, there is no disciplinary sanction (warning or caution) for the goalkeeper.",
+            scenario_ko: "페널티킥 상황에서 골키퍼가 볼이 킥이 되기 전에 양발 모두 골라인 앞에 나와 있다. 골키퍼가 세이브를 했으나 볼이 골키퍼를 맞고 튀어나와 공격팀 선수에게 갔고 그 선수가 득점한다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 골키퍼의 반칙에 대해 어드밴티지를 적용하고 득점을 인정한다. 페널티킥을 다시 실시하지 않으므로 골키퍼에 대한 징계 조치(주의 또는 경고)는 없다.",
+            key_point: "페널티킥 상황에서 골키퍼가 반칙을 범했더라도 득점이 되었다면 킥을 다시 하지 않으며 징계 조치도 하지 않는다."
+        },
+        {
+            category: 5,
+            number: 27,
+            title: "부상 중 교체된 선수가 이전에 퇴장성 반칙을 범했음이 밝혀진 경우",
+            scenario_en: "The referee stops play because a player (Team A) lies on the ground and is seriously injured. While the player is being assessed by a doctor, Team B is allowed to make a substitution. After it is completed and before play has restarted, the referee is informed by a match official that the injury is a result of a red card offence committed by the substituted player of Team B.",
+            decision_en: "What is the correct decision? As the red card offence occurred before the substitution, the player is sent off and the substitution is cancelled. The injured player can be quickly treated and then remain on the field of play. If the offence occurred when the ball was in play, play restarts with a free kick to Team A (or a penalty kick if it occurred in Team B's penalty area).",
+            scenario_ko: "A팀 선수가 지면에 누워 심각한 부상을 입어 주심이 경기를 중단시킨다. 의사가 선수를 검진하는 동안 B팀의 교체가 허용된다. 교체가 완료되고 경기가 재개되기 전, 주심은 다른 심판진으로부터 해당 부상이 교체되어 나간 B팀 선수가 범한 레드카드성 반칙의 결과라는 정보를 듣는다.",
+            decision_ko: "올바른 판정은 무엇인가? 레드카드성 반칙이 교체 전에 발생했으므로 해당 선수는 퇴장당하고 교체는 취소된다. 부상당한 선수는 신속하게 치료를 받은 후 경기장 안에 머물 수 있다. 만약 볼이 인플레이 상황에서 반칙이 발생했다면, A팀의 프리킥(B팀 페널티 에어리어 내라면 페널티킥)으로 경기를 재개한다.",
+            key_point: "다른 심판이 반칙을 발견하여 플레이 재개 전에 알렸다면, 주심은 결정을 내릴 수 있으며 교체 전 발생한 퇴장성 반칙은 교체를 무효화한다."
+        },
+        {
+            category: 5,
+            number: 28,
+            title: "페널티 에어리어 내에서 명백한 득점 기회 저지 및 상대 안전 위협 반칙 발생 시",
+            scenario_en: "A defender commits a foul challenge within their own penalty area which denies an attacker an obvious goal-scoring opportunity (DOGSO) and endangers the safety of the opponent.",
+            decision_en: "What is the correct decision? The referee awards a penalty kick and sends off the defender. When two offences occur at the same time, the more serious offence must be punished. Therefore, it is a red card for serious foul play (not a yellow card for the DOGSO offence that was a challenge for the ball inside the penalty area).",
+            scenario_ko: "수비수가 자신의 페널티 에어리어 안에서 상대방의 안전을 위태롭게 하는 도전으로 공격수의 명백한 득점 기회를 저지(DOGSO)하는 파울을 범한다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 페널티킥을 부여하고 수비수를 퇴장시킨다. 두 가지 반칙이 동시에 발생하면 더 심한 반칙을 처벌해야 한다. 따라서 이는 심한 반칙 플레이에 의한 레드카드 상황이다 (페널티 에어리어 안에서 볼에 대한 도전으로 인한 DOGSO에 주어지는 옐로카드가 아님).",
+            key_point: "볼에 대한 도전이었더라도 상대방의 안전을 위협하는 행위(심한 반칙 플레이)는 DOGSO 여부와 상관없이 레드카드 대상이다."
+        },
+        {
+            category: 5,
+            number: 29,
+            title: "승부차기 도중 상대 팀 임원에게 도발적인 행동을 한 지도자에 대한 처벌",
+            scenario_en: "During penalties (penalty shoot-out), a coach acts in a provocative manner towards opposing team officials.",
+            decision_en: "What is the correct decision? The referee may take disciplinary action against team officials who fail to act in a responsible manner during kicks. The coach will be cautioned (yellow card) or sent off (red card) depending on the exact circumstances.",
+            scenario_ko: "승부차기 도중, 한 지도자가 상대 팀 임원들에게 도발적인 태도로 행동한다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 승부차기 동안 책임 있는 태도로 행동하지 않은 팀 임원에 대해 징계 조치를 취할 수 있다. 해당 지도자는 구체적인 상황에 따라 경고(옐로카드)를 받거나 퇴장(레드카드)당할 수 있다.",
+            key_point: "주심은 승부차기 시간을 포함해 경기 종료 후까지 팀 임원에게 옐로카드와 레드카드를 제시할 권한을 갖는다."
+        },
+        {
+            category: 5,
+            number: 30,
+            title: "퇴장 판정 후 교체가 진행되었으나 VAR 리뷰로 판정이 경고로 바뀐 경우",
+            scenario_en: "The goalkeeper is sent off for denying the opponent an obvious goal-scoring opportunity. Before play restarts, the team replaces a player with a substitute goalkeeper; the referee, after a VAR review, changes the red card to a yellow card for stopping a promising attack. May the team cancel the substitution in this case?",
+            decision_en: "The referee may change a decision until play has restarted: the change from a red card to a yellow card is permitted; cancelling the substitution is permitted: within the 'spirit' of the Law and for fairness as it only occurred because of the referee's error. within the letter of the Law as the referee technically changes the decision to allow the substitution.",
+            scenario_ko: "골키퍼가 상대의 명백한 득점 기회를 저지하여 퇴장당한다. 플레이가 재개되기 전, 팀은 한 선수를 빼고 교체 골키퍼를 투입한다. 이후 주심은 VAR 리뷰를 거쳐 레드카드를 유망한 공격 저지에 따른 옐로카드로 변경한다.",
+            decision_ko: "이 경우 팀이 교체를 취소할 수 있는가? 주심은 플레이가 재개되기 전까지 판정을 바꿀 수 있다. 레드카드를 옐로카드로 변경하는 것이 허용된다. 교체 취소가 허용된다: 이는 오로지 주심의 실수로 인해 발생한 것이므로 경기규칙의 '정신'과 공정성에 부합한다. 주심이 교체를 허용했던 결정을 기술적으로 변경하는 것이므로 경기규칙의 조문에 부합한다.",
+            key_point: "주심은 플레이가 재개되기 전에는 자신의 판정을 번복할 수 있으며, 주심의 명백한 오류로 인한 교체 진행은 취소될 수 있다."
+        },
+        {
+            category: 5,
+            number: 31,
+            title: "팀 명단 제출 전 경기장에서 상대 선수에게 침을 뱉은 경우의 절차",
+            scenario_en: "Before the team lists have been submitted, a player spits at an opponent in the pre-match warm-up on the field of play. If it is noticed by the match officials, what is the correct procedure?",
+            decision_en: "The offender cannot be named on the team list or play in the match and is reported to the appropriate authority. The number of players and substitutes is not reduced. A red card is not shown as cards may not be shown until the referee enters the field of play at the start of the match.",
+            scenario_ko: "팀 명단이 제출되기 전, 한 선수가 경기장 내 경기 전 워밍업 도중 상대 선수에게 침을 뱉는다. 심판진이 이를 발견했다면 올바른 절차는 무엇인가?",
+            decision_ko: "반칙자는 어떠한 직책으로도 팀 명단에 이름을 올리거나 경기에 뛸 수 없으며 관련 기관에 보고된다. 선수 및 교체 선수의 숫자는 줄어들지 않는다. 주심이 경기를 시작하기 위해 경기장에 들어서기 전까지는 카드를 제시할 수 없으므로 레드카드는 보여주지 않는다.",
+            key_point: "팀 명단 제출 전 퇴장성 반칙을 범한 선수는 명단에 등록될 수 없으며, 카드는 경기 시작을 위해 입장한 후부터 제시 가능하다."
+        },
+        {
+            category: 5,
+            number: 32,
+            title: "주심이 수신호를 잊은 채 간접 프리킥이 직접 골문으로 들어간 경우",
+            scenario_en: "A player takes a free kick and the referee forgets to raise the arm above the head to signal that the kick is indirect. After that, the ball is kicked directly into the opponents’ goal (without touching another player).",
+            decision_en: "What is the correct decision? The indirect free kick is retaken by the same team.",
+            scenario_ko: "한 선수가 프리킥을 실시하는데 주심이 그 킥이 간접 프리킥임을 알리는 팔을 머리 위로 들어 올리는 신호를 잊었다. 그 후 볼이 (다른 선수에게 터치되지 않고) 직접 상대 팀 골문으로 들어갔다.",
+            decision_ko: "올바른 판정은 무엇인가? 동일한 팀에 의해 간접 프리킥을 다시 실시한다.",
+            key_point: "주심이 간접 프리킥 신호를 하지 않은 상태에서 볼이 직접 골문으로 들어갔다면 프리킥을 다시 실시해야 한다."
+        },
+        {
+            category: 5,
+            number: 33,
+            title: "악천후로 인해 조기에 경기를 마치기 위해 하프타임 시간을 단축할 수 있는지 여부",
+            scenario_en: "It rains heavily during a match and the playing conditions get worse throughout the first half. Is it allowed to shorten the half-time interval to complete the game earlier?",
+            decision_en: "Yes, provided that the referee and both teams agree. The referee may also decide to stop, suspend or abandon the match if the condition of the field, its surrounds or the weather conditions do not allow the game to be continued.",
+            scenario_ko: "경기 중 폭우가 내리고 전반전 내내 경기 조건이 악화된다. 경기를 더 일찍 마치기 위해 하프타임 휴식 시간을 단축하는 것이 허용되는가?",
+            decision_ko: "네, 주심과 양 팀이 동의한다면 가능하다. 또한 경기장 상태, 주변 환경 또는 기상 조건이 경기를 계속할 수 없게 만든다면 주심은 경기를 중단, 일시 중지 또는 포기하기로 결정할 수도 있다.",
+            key_point: "하프타임 시간은 주심의 허락이 있을 때만 변경할 수 있으며, 경기장 조건에 따른 경기 지속 여부는 심판의 재량이다."
+        },
+        {
+            category: 5,
+            number: 34,
+            title: "부상당한 선수가 주심의 지시에도 불구하고 들것에 실려 나가는 것을 거부할 경우",
+            scenario_en: "A player is injured as the result of a reckless tackle for which the opponent is cautioned (yellow card). The assessment/treatment on the field of play cannot be completed quickly and the referee authorises the stretcher bearers to enter the field.",
+            decision_en: "What is the correct decision if the player refuses to leave the field? The player is cautioned (yellow card) and must leave the field on the stretcher or on foot.",
+            scenario_ko: "무모한 태클의 결과로 선수가 부상을 당하고 상대 선수는 경고(옐로카드)를 받는다. 경기장 내에서의 검진/치료가 신속하게 완료될 수 없어 주심이 들것 요원의 입장을 허락한다.",
+            decision_ko: "해당 선수가 경기장을 떠나기를 거부할 경우 올바른 판정은 무엇인가? 해당 선수에게 경고(옐로카드)를 주어야 하며, 선수는 들것에 실리거나 걸어서 반드시 나가야 한다.",
+            key_point: "주심이 의료진이나 들것 요원의 입장을 허락하면 부상 선수는 반드시 나가야 하며, 이를 따르지 않으면 반스포츠 행위로 경고를 받는다."
+        },
+        {
+            category: 5,
+            number: 35,
+            title: "킥오프 상황에서 상대 선수의 조기 진입 후 직접 득점이 된 경우",
+            scenario_en: "Team A player takes the kick-off and kicks the ball directly into the opponent’s goal. What is the correct decision if a Team B player entered the opponents’ half of the field before the ball was in play?",
+            decision_en: "The referee plays advantage for the offence by Team B and awards the goal.",
+            scenario_ko: "A팀 선수가 킥오프를 실시하여 볼을 상대 팀 골문에 직접 차 넣는다. 볼이 인플레이가 되기 전에 B팀 선수가 상대 진영으로 들어왔다면 올바른 판정은 무엇인가?",
+            decision_ko: "주심은 B팀의 반칙에 대해 어드밴티지를 적용하고 득점을 인정한다.",
+            key_point: "킥오프 절차 위반이 있더라도 득점 상황에서 반칙을 하지 않은 팀에게 유리하다면 어드밴티지를 적용하여 득점을 인정할 수 있다."
+        },
+        {
+            category: 5,
+            number: 36,
+            title: "잔인한 태클로 인해 두 선수 모두 부상을 입고 치료가 필요한 경우",
+            scenario_en: "A player (Team A) commits a brutal tackle while challenging an opponent (Team B) for the ball. As a result, both players are injured and need medical attention.",
+            decision_en: "What is the correct decision? The referee stops play and awards a direct free kick or penalty kick to Team B. Team A player is sent off (serious foul play) and has to leave the field of play for treatment (the red card must be shown before the player leaves). Team B player may stay on the field, if the assessment/treatment is completed quickly.",
+            scenario_ko: "A팀 선수가 볼을 다투는 과정에서 상대 B팀 선수에게 잔인한 태클을 범한다. 그 결과 두 선수 모두 부상을 입고 의학적 조치가 필요하다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 플레이를 중단시키고 B팀에게 직접 프리킥 또는 페널티킥을 부여한다. A팀 선수는 퇴장(심한 반칙 플레이) 조치되며 치료를 위해 경기장을 떠나야 한다 (레드카드는 선수가 떠나기 전에 제시되어야 한다). B팀 선수는 검진/치료가 신속하게 완료된다면 경기장 안에 머물 수 있다.",
+            key_point: "상대 선수가 퇴장당하는 신체적 반칙의 피해자인 경우, 부상 선수는 신속한 치료 후 경기장에 남을 수 있다. 반면 퇴장당하는 선수는 경기장을 떠나야 한다."
+        },
+        {
+            category: 5,
+            number: 37,
+            title: "수비수가 걷어낸 볼이 의도치 않게 상대 선수의 얼굴을 맞힌 경우",
+            scenario_en: "A defender (Team A) makes a clearance under pressure from an attacker (Team B) and tries to kick the ball away without looking where other opponents are standing. Unfortunately, the ball hits another attacker (Team B) in the face who is three metres away, inside the defender’s penalty area.",
+            decision_en: "What is the referee’s decision? The referee allows play to continue (accidental incident, no offence) unless the attacker requires medical attention. In this situation, the referee stops play and allows a doctor to enter the field and examine the player. Play will be restarted with a dropped ball for the defending team goalkeeper in their penalty area.",
+            scenario_ko: "A팀 수비수가 B팀 공격수의 압박 속에서 볼을 걷어내기 위해 다른 상대 선수들의 위치를 보지 않고 볼을 찼다. 불행히도 볼이 3m 떨어져 있던 다른 B팀 공격수의 얼굴에 맞았으며, 이는 수비수의 페널티 에어리어 안이었다.",
+            decision_ko: "주심의 판정은 무엇인가? 공격수가 의학적 조치를 필요로 하지 않는 한 주심은 플레이를 계속하도록 허용한다(우연한 사고이며 반칙이 아님). 만약 치료가 필요한 상황이라면 주심은 플레이를 중단시키고 의사가 경기장에 들어와 선수를 검진하도록 허용한다. 플레이는 수비팀 골키퍼에게 페널티 에어리어 내에서 드롭볼을 실시하여 재개한다.",
+            key_point: "조심성없는, 무모함 또는 과도한 힘의 사용이 없는 사고는 반칙이 아니며, 부상으로 중단된 경우 페널티 에어리어 내에서의 재개는 항상 골키퍼에게 드롭볼을 한다."
+        },
+        {
+            category: 5,
+            number: 38,
+            title: "페널티 에어리어 내에서 두 선수가 동시에 반칙을 범한 경우의 재개 방법",
+            scenario_en: "While the ball is in play, a defender (Team A) and an attacker (Team B) fight with each other in Team A’s penalty area.",
+            decision_en: "What is the referee’s decision? Both players must be sent off (red card) for violent conduct. If the referee decides that: Team A player committed the offence first – penalty kick for Team B; Team B player committed the offence first – direct free kick for Team A; the two players committed the offences at the same time – penalty kick for Team B because Team A player committed the more serious offence in terms of the restart",
+            scenario_ko: "볼이 인플레이 상황에서, A팀 수비수와 B팀 공격수가 A팀 페널티 에어리어 안에서 서로 싸운다.",
+            decision_ko: "주심의 판정은 무엇인가? 두 선수 모두 난폭한 행위로 퇴장(레드카드)시켜야 한다. 주심이 다음과 같이 판단한다면: A팀 선수가 먼저 반칙을 범한 경우 – B팀에게 페널티킥 부여; B팀 선수가 먼저 반칙을 범한 경우 – A팀에게 직접 프리킥 부여; 두 선수가 동시에 반칙을 범한 경우 – A팀 선수가 경기 재개 측면에서 더 심한 반칙(페널티킥 제공)을 범했으므로 B팀에게 페널티킥 부여",
+            key_point: "동시 반칙 시 처벌, 재개 방법, 신체적 강도 등을 고려해 더 심한 반칙으로 처벌하며, 직접 프리킥보다 페널티킥이 재개 측면에서 더 무겁다."
+        },
+        {
+            category: 5,
+            number: 39,
+            title: "볼이 아웃 오브 플레이일 때 선수의 출혈을 발견한 경우의 조치",
+            scenario_en: "When the ball is out of play, the referee notices that a player is bleeding.",
+            decision_en: "What is the correct decision? The referee ensures that the player leaves the field. The player may only re-enter on receiving a signal from the referee, who must be satisfied that the bleeding has stopped and there is no blood on the player's equipment.",
+            scenario_ko: "볼이 아웃 오브 플레이일 때 주심이 한 선수의 출혈을 발견한다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 해당 선수가 반드시 경기장을 떠나도록 조치한다. 선수는 출혈이 멈추고 장비에 피가 묻어있지 않다는 것을 주심이 확인한 후, 주심의 신호를 받아야만 다시 입장할 수 있다.",
+            key_point: "상처에서 피가 나는 선수는 반드시 경기장을 떠나야 하며 주심의 확인과 신호가 있어야 재입장이 가능하다."
+        },
+        {
+            category: 5,
+            number: 40,
+            title: "경기가 중단되었다가 재개된 후에도 VAR 리뷰가 가능한 예외 상황",
+            scenario_en: "May the referee undertake the VAR ‘review’ if – after a match-changing incident – play has stopped and been restarted?",
+            decision_en: "No, it is not permitted except for: a case of mistaken identity or for a potential sending-off offence relating to violent conduct, spitting, biting or extremely offensive, insulting and/or abusive action(s).",
+            scenario_ko: "경기를 좌우하는 사건이 발생한 후 플레이가 중단되었다가 재개되었음에도 주심이 VAR ‘리뷰’를 실시할 수 있는가?",
+            decision_ko: "아니요, 다음의 경우를 제외하고는 허용되지 않는다: 신원 오인의 경우 또는 난폭한 행위, 침 뱉기, 깨물기 또는 극도로 공격적, 모욕적, 욕설이 담긴 행동/행위와 관련된 퇴장 가능성이 있는 반칙의 경우.",
+            key_point: "경기가 재개된 후에는 원칙적으로 리뷰가 불가능하나, 신원 오인이나 심각한 퇴장성 반칙에 한해 예외적으로 리뷰가 허용된다."
+        },
+        {
+            category: 5,
+            number: 41,
+            title: "경기 전 워밍업 중 경고성 반칙을 범한 선수에 대한 절차",
+            scenario_en: "The referee notices that a player is committing a cautionable (yellow card) offence on the field of play during the warm-up before the kick-off.",
+            decision_en: "What is the correct procedure? The offending player cannot be cautioned, or a yellow card shown, as the offence has occurred before the referee has entered the field of play at the start of the match. The incident is reported to the appropriate disciplinary authorities.",
+            scenario_ko: "주심은 킥오프 전 워밍업 도중 경기장 내에서 한 선수가 경고성(옐로카드) 반칙을 범하는 것을 발견한다.",
+            decision_ko: "올바른 절차는 무엇인가? 반칙이 주심이 경기 시작을 위해 경기장에 들어서기 전에 발생했으므로 해당 선수에게 경고를 주거나 옐로카드를 보여줄 수 없다. 이 사건은 관련 기관에 보고된다.",
+            key_point: "옐로카드와 레드카드는 주심이 경기 시작을 위해 경기장에 들어선 때부터 제시할 수 있다."
+        },
+        {
+            category: 5,
+            number: 42,
+            title: "페널티 에어리어 내 폭행 후 경기가 스로인으로 재개된 후의 판정 번복 가능 여부",
+            scenario_en: "A defending player strikes an attacking player inside the penalty area when the ball is in play. An assistant referee indicates the offence but the referee does not see the indication. Play continues and the ball leaves the field.",
+            decision_en: "What decisions can the referee take if play has already restarted with a throw-in? The referee may not change a restart decision and may not award a penalty kick. A red card for violent conduct may be issued because the assistant referee had identified and attempted to communicate the offence to the referee before play restarted.",
+            scenario_ko: "볼이 인플레이 상황에서 수비 선수가 페널티 에어리어 내의 공격 선수를 가격한다. 부심이 이 반칙을 지적했으나 주심은 그 신호를 보지 못했다. 플레이는 계속되었고 볼은 경기장 밖으로 나갔다.",
+            decision_ko: "경기가 이미 스로인으로 재개되었다면 주심은 어떤 결정을 내릴 수 있는가? 주심은 재개 결정을 번복할 수 없으며 페널티킥을 부여할 수도 없다. 하지만 부심이 반칙 상황을 확인했고 플레이 재개 전에 주심에게 알리려 했으므로, 난폭한 행위에 대한 레드카드는 제시할 수 있다.",
+            key_point: "플레이가 재개된 이후에는 판정을 번복할 수 없으나, 다른 심판진이 재개 전 반칙을 발견하고 소통하려 했다면 징계 조치(카드 제시)는 가능하다."
+        },
+        {
+            category: 5,
+            number: 43,
+            title: "심각한 부상 의심으로 플레이를 중단시킨 경우의 재개 방법",
+            scenario_en: "When the ball is in play in the middle of the field, the referee notices that a player lies on the ground and stops play because he/she thinks that the player is seriously injured. The player leaves the field for treatment.",
+            decision_en: "How is play restarted? Play is restarted with a dropped ball. The referee drops the ball for one player of the team that last touched the ball at the position where it last touched a player.",
+            scenario_ko: "경기장 중앙에서 볼이 인플레이일 때, 주심은 한 선수가 지면에 누워있는 것을 발견하고 심각한 부상이라고 판단해 경기를 중단시킨다. 해당 선수는 치료를 위해 경기장을 떠난다.",
+            decision_ko: "경기는 어떻게 재개되는가? 경기는 드롭볼로 재개된다. 주심은 플레이 중단 전 볼을 마지막으로 터치한 팀의 선수 한 명에게 볼이 마지막으로 터치되었던 위치에서 드롭볼을 실시한다.",
+            key_point: "반칙 없이 부상으로 인해 경기가 중단된 경우, 마지막으로 볼을 터치한 팀의 선수에게 드롭볼로 재개한다."
+        },
+        {
+            category: 5,
+            number: 44,
+            title: "골킥 상황에서 골키퍼의 실수 후 두 번째 터치로 득점을 방해했으나 실점한 경우",
+            scenario_en: "While taking a goal kick, a goalkeeper slips on the grass. After the ball is in play, he/she kicks the ball a second time (before it has touched any other player) to deny an obvious goal-scoring opportunity. Unfortunately, the ball goes to an opposing player who scores a goal.",
+            decision_en: "What is the correct decision? The referee plays the advantage, awards the goal and cautions (yellow card) the goalkeeper.",
+            scenario_ko: "골킥을 실시하던 중 골키퍼가 잔디에 미끄러진다. 볼이 인플레이가 된 후, 골키퍼는 명백한 득점 기회를 저지하기 위해 (다른 선수에게 터치되기 전) 볼을 두 번째로 찬다. 불행히도 볼이 상대 선수에게 가서 득점이 된다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 어드밴티지를 적용하여 득점을 인정하고 골키퍼에게는 경고(옐로카드) 조치를 한다.",
+            key_point: "이중 터치로 득점 기회를 저지하려 했으나 어드밴티지로 득점이 되었다면, 명백한 득점 기회 저지 시도에 대해 퇴장이 아닌 경고를 준다."
+        },
+        {
+            category: 5,
+            number: 45,
+            title: "무모한 태클로 두 선수 모두 부상을 입은 경우의 치료 및 징계 절차",
+            scenario_en: "A player (Team A) committed a foul challenge against an opponent (Team B) in a manner considered by the referee to be reckless. As a result, both players are injured and need attention.",
+            decision_en: "What is the correct decision? The referee stops play and awards a direct free kick to Team B. Team A player is cautioned (yellow card) and must leave the field of play. Team B player may be treated and stay on the field, if the assessment /treatment is completed quickly.",
+            scenario_ko: "A팀 선수가 주심이 무모하다고 판단한 태도로 상대 B팀 선수에게 도전하여 파울을 범한다. 그 결과 두 선수 모두 부상을 입고 조치가 필요하다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 플레이를 중단시키고 B팀에게 직접 프리킥을 부여한다. A팀 선수는 경고(옐로카드)를 받고 반드시 경기장을 떠나야 한다. B팀 선수는 검진/치료가 신속하게 완료된다면 치료를 받고 경기장 안에 머물 수 있다.",
+            key_point: "상대 선수가 경고를 받은 신체적 반칙의 피해자라면 경기장에서 신속한 치료 후 잔류할 수 있지만, 반칙을 범한 선수는 치료를 위해 나가야 한다."
+        },
+        {
+            category: 5,
+            number: 46,
+            title: "같은 팀 선수끼리 충돌하여 치료가 필요한 경우의 조치",
+            scenario_en: "Two players from the same team have collided and need attention.",
+            decision_en: "What is the correct decision? The referee stops play. Both players may be treated on the field of play and do not have to leave it.",
+            scenario_ko: "같은 팀 선수 두 명이 충돌하여 조치가 필요하다.",
+            decision_ko: "올바른 판정은 무엇인가? 주심은 플레이를 중단시킨다. 두 선수 모두 경기장 위에서 치료를 받을 수 있으며 경기장을 떠날 필요가 없다.",
+            key_point: "같은 팀 선수끼리 충돌하여 부상을 입은 경우, 두 선수 모두 경기장 내에서 검진 및 치료를 받을 수 있다."
+        },
+        {
+            category: 5,
+            number: 47,
+            title: "VAR이 퇴장성 반칙으로 온필드리뷰를 권고했으나 주심이 경고를 결정할 수 있는지 여부",
+            scenario_en: "A player makes a challenge which might endanger the safety of the opponent. The video assistant referee recommends an on-field review for a potential sending-off (red card, RC) offence because this incident was not seen by the referee. May the referee, after undertaking the review, decide to caution (yellow card, YC) the offender?",
+            decision_en: "Yes. The final decision(s) must be based on what has been seen – therefore although the review was initiated for a red card offence if the referee's opinion, after watching the replays, is that the offence was a caution (YC) and not a sending-off (RC), then the referee must issue a YC.",
+            scenario_ko: "한 선수가 상대방의 안전을 위태롭게 할 수 있는 도전을 한다. 주심이 이 사건을 보지 못했기 때문에 VAR 심판은 퇴장 가능성이 있는(레드카드) 반칙에 대해 온필드리뷰를 권고한다. 주심은 리뷰를 실시한 후 위반자에게 경고(옐로카드)를 주기로 결정할 수 있는가?",
+            decision_ko: "네. 최종 판정은 확인된 영상에 근거해야 한다. 따라서 비록 퇴장성 반칙 때문에 리뷰가 시작되었더라도 리플레이를 본 후 주심의 견해가 퇴장이 아닌 경고성 반칙이라고 판단된다면 주심은 옐로카드를 제시해야 한다.",
+            key_point: "VAR 리뷰 후 최종 판정은 주심이 내리며, 리뷰 대상 상황에서 퇴장 대신 경고 조치를 내리는 것도 가능하다."
+        },
+        {
+            category: 5,
+            number: 48,
+            title: "부상으로 경기장을 떠나야 하는 선수에게 경고를 주는 시점",
+            scenario_en: "The referee has decided to caution a player who is injured and has to leave the field of play for treatment. When does the referee issue the sanction?",
+            decision_en: "The yellow card must be shown before the player leaves but if the player is seriously injured the referee should show some empathy when showing the card.",
+            scenario_ko: "주심은 부상을 입어 치료를 위해 경기장을 떠나야 하는 선수에게 경고를 주기로 결정했다. 주심은 언제 징계(카드 제시)를 내려야 하는가?",
+            decision_ko: "옐로카드는 선수가 떠나기 전에 제시되어야 하지만, 선수가 심각하게 부상당했다면 주심은 카드를 보여줄 때 어느 정도 공감을 표시해야 한다.",
+            key_point: "부상으로 인해 치료를 위해 떠나야 하는 선수에게는 경기장을 벗어나기 전에 카드를 제시해야 한다."
+        },
+        {
+            category: 5,
+            number: 49,
+            title: "서로 다른 팀의 선수가 무모한 도전과 과도한 힘의 가격 반칙을 동시에 범한 경우",
+            scenario_en: "Two players from different teams commit an offence at the same time: a player from Team A challenges for the ball in a reckless manner; a player from Team B strikes an opponent with excessive force.",
+            decision_en: "What is the referee’s decision? Both players must receive the appropriate disciplinary sanction: caution (yellow card) for a reckless challenge; sending-off (red card) for violent conduct. Play is restarted with a direct free kick for Team A because the player from Team B committed the more serious offence.",
+            scenario_ko: "서로 다른 팀의 두 선수가 동시에 반칙을 범한다: A팀 선수는 무모한 태도로 볼을 다투며 도전하고, B팀 선수는 과도한 힘을 사용하여 상대를 가격한다.",
+            decision_ko: "주심의 판정은 무엇인가? 두 선수 모두에게 적절한 징계 조치를 내려야 한다: 무모한 도전을 한 선수에게는 경고(옐로카드); 난폭한 행위를 한 선수에게는 퇴장(레드카드). B팀 선수가 더 심한 반칙(난폭한 행위)을 범했으므로 경기는 A팀의 직접 프리킥으로 재개한다.",
+            key_point: "동시 반칙 시 각각의 선수에게 적절한 징계를 내리되, 플레이 재개는 더 심한 반칙을 기준으로 결정한다."
+        },
+        {
+            category: 5,
+            number: 50,
+            title: "무모한 태클로 유망한 공격을 저지했으나 어드밴티지가 적용된 경우의 징계",
+            scenario_en: "A player (Team A) stopped a promising attacking by a reckless challenge. The opponents (Team B) retain possession of the ball and the referee plays the advantage. What disciplinary action does the referee take against the offender?",
+            decision_en: "The player (Team A) must be cautioned (yellow card, YC) when play next stops. The Laws state that the referee punishes the more serious offence when more than one offence occurs at the same time. Thus, if a promising attack is stopped (SPA) by a reckless challenge then the YC is for the reckless challenge and not SPA.",
+            scenario_ko: "A팀 선수가 무모한 도전으로 유망한 공격을 저지한다. 상대 B팀이 볼 소유권을 유지하자 주심은 어드밴티지를 적용한다.",
+            decision_ko: "주심은 위반자에게 어떤 징계 조치를 취하는가? 플레이가 다음 중단되었을 때 A팀 선수에게 경고(옐로카드)를 주어야 한다. 경기규칙은 두 가지 이상의 반칙이 동시에 발생하면 더 심한 반칙을 처벌한다고 규정하고 있다. 따라서 무모한 도전에 의해 유망한 공격이 저지(SPA)되었다면, 경고(YC)는 SPA가 아닌 무모한 도전에 대해 주어지는 것이다.",
+            key_point: "어드밴티지가 적용되어 유망한 공격이 회복되었더라도 반칙 자체가 '무모한' 것이라면 해당 반칙에 대한 경고는 유효하다."
+        },
+        {
+            category: 5,
+            number: 51,
+            title: "페널티킥 선언 후 VAR 리뷰 결과 반칙 위치가 에어리어 밖인 것으로 판명된 경우",
+            scenario_en: "The referee has awarded a penalty kick, however, the video assistant referee (VAR) recommends a ‘review’ because the foul was committed outside the penalty area.",
+            decision_en: "What is the appropriate procedure? A ‘VAR-only review’ is usually appropriate for factual decisions e.g. location of an offence (inside/outside the penalty area), offside, ball out of play etc. Only one ‘TV signal’ is needed so the VAR tells the referee what the TV replays show and the referee then makes the 'TV signal' immediately before giving the final decision.",
+            scenario_ko: "주심이 페널티킥을 부여했으나, VAR 심판이 반칙이 페널티 에어리어 밖에서 일어났다는 이유로 ‘리뷰’를 권유한다.",
+            decision_ko: "적절한 절차는 무엇인가? 반칙의 위치(페널티 에어리어 안/밖), 오프사이드, 볼의 아웃 오브 플레이 등과 같은 팩트에 관한 판정은 대체로 ‘VAR 심판만 리뷰’하는 것이 적절하다. 단 한 번의 ‘TV 신호’만 필요하므로, VAR 심판이 주심에게 TV 리플레이에 나타난 내용을 전달하면 주심은 최종 판정을 내리기 직전에 ‘TV 신호’를 보여준다.",
+            key_point: "위치 선정과 같은 사실(Fact) 확인은 VAR 심판의 정보만으로 판단하는 것이 효율적이며, 최종 판정 전 주심의 TV 신호가 필요하다."
+        },
+        {
+            category: 5,
+            number: 52,
+            title: "페널티 에어리어 내 핸드볼 상황에서 주심이 경기를 진행시킨 후의 VAR 절차",
+            scenario_en: "A defending team player has made their body bigger and touched the ball with their arm inside their own penalty area. The referee allows play to continue. The video assistant referee (VAR) communicates the incident to the referee.",
+            decision_en: "What is the correct procedure? The referee stops play when the ball is next in a neutral zone/situation and shows the ‘TV signal’. As this is a subjective decision, an ‘on-field review’ (OFR) is appropriate so the referee goes to the referee review area to view replay footage before making a final decision.",
+            scenario_ko: "수비팀 선수가 자신의 페널티 에어리어 안에서 팔을 이용해 몸을 더 크게 만들어 볼을 터치한다. 주심은 경기를 계속 진행시킨다. VAR 심판이 이 상황을 주심에게 전달한다.",
+            decision_ko: "올바른 절차는 무엇인가? 주심은 볼이 다음 중립 지역이나 중립적인 상황에 있을 때 플레이를 멈추고 ‘TV 신호’를 보여준다. 이는 주관적인 판정이 필요한 상황이므로 ‘온필드리뷰(OFR)’가 적절하며, 따라서 주심은 최종 판정을 내리기 전에 심판 리뷰 구역으로 가서 리플레이 영상을 확인해야 한다.",
+            key_point: "핸드볼과 같은 주관적인 판단이 필요한 경우에는 주심이 직접 영상을 확인하는 온필드리뷰를 실시해야 한다."
+        },
+        {
+            category: 5,
+            number: 53,
+            title: "경기장에서 치료를 받은 부상 선수가 즉시 프리킥을 할 수 있는지 여부",
+            scenario_en: "A player was injured after a foul and then assessed by the doctor on the field of play. He/she is able to continue playing. Can this player take a free kick?",
+            decision_en: "The player can stay on the field of play if he/she was injured as the result of a physical offence for which the opponent is cautioned (yellow card, YC) or sent off (red card, RC) and the assessment/treatment is completed quickly. Otherwise, the player must leave the field of play.",
+            scenario_ko: "한 선수가 파울로 부상을 당해 경기장 안에서 의사의 검진을 받았다. 해당 선수는 경기를 계속할 수 있는 상태다.",
+            decision_ko: "이 선수가 바로 프리킥을 할 수 있는가? 상대 선수가 경고(옐로카드) 또는 퇴장(레드카드)을 받은 신체적 반칙으로 인해 부상을 당했고, 검진/치료가 신속하게 완료되었다면 해당 선수는 경기장 안에 머물 수(있으며 프리킥을 할 수) 있다. 그렇지 않은 경우 선수는 반드시 경기장을 떠나야 한다.",
+            key_point: "상대방의 처벌을 동반한 신체적 반칙의 피해자인 경우, 경기장 내에서 신속히 조치를 받고 그대로 남아 플레이를 이어갈 수 있다."
+        },
+        {
+            category: 5,
+            number: 54,
+            title: "골키퍼와 필드 플레이어가 충돌하여 치료가 필요한 경우 경기장 잔류 여부",
+            scenario_en: "A goalkeeper and an outfield player have collided and need attention. Do they have to leave the field of play for treatment?",
+            decision_en: "No. The referee will allow both players to be treated and then remain on the field.",
+            scenario_ko: "골키퍼와 필드 플레이어가 충돌하여 조치가 필요하다.",
+            decision_ko: "이들이 치료를 위해 경기장을 떠나야 하는가? 아니요. 주심은 두 선수 모두 치료를 받은 후 경기장에 남을 수 있도록 허용할 것이다.",
+            key_point: "골키퍼가 포함된 충돌로 인한 부상의 경우, 해당 선수들은 경기장 내에서 치료를 받고 남을 수 있다."
+        },
+        {
+            category: 5,
+            number: 55,
+            title: "동시에 여러 반칙이 발생했을 때 주심의 처벌 기준",
+            scenario_en: "What is the referee’s decision if more than one offence occurs at the same time?",
+            decision_en: "The referee punishes the more serious offence, in terms of sanction, restart, physical severity and tactical impact.",
+            scenario_ko: "동시에 두 가지 이상의 반칙이 발생했을 때 주심의 판정은 무엇인가?",
+            decision_ko: "주심은 처벌, 재개 방법, 신체적 강도 및 전술적 영향 등을 고려하여 더 심한 반칙으로 처벌한다.",
+            key_point: "복수의 반칙이 동시 발생 시 심판은 규칙에 명시된 여러 기준을 종합하여 가장 중한 반칙을 선택해 적용한다."
+        },
+        {
+            category: 5,
+            number: 56,
+            title: "주심이 판정을 내리지 않은 상태에서 VAR을 사용하여 결정을 내릴 수 있는지 여부",
+            scenario_en: "Is the referee permitted to give ‘no decision’ and then use the VAR to make a decision?",
+            decision_en: "No. The VAR is only used after the referee has made a first decision (including allowing play to continue), or if a serious incident is missed/not seen by the match officials.",
+            scenario_ko: "주심이 ‘판정을 내리지 않고’ 나중에 VAR을 사용하여 결정을 내리는 것이 허용되는가?",
+            decision_ko: "아니요. VAR은 주심이 첫 번째 판정(플레이 계속 허용 포함)을 내린 후 또는 심판진이 중대한 사건을 놓치거나 보지 못한 경우에만 사용된다.",
+            key_point: "주심은 항상 먼저 자신의 판정을 내려야 하며, VAR에 의존해 판정을 유보하는 것은 허용되지 않는다."
+        },
+        {
+            category: 5,
+            number: 57,
+            title: "주심이 보지 못한 두 번째 경고성 반칙에 대해 VAR이 개입할 수 있는지 여부",
+            scenario_en: "A player committed a second cautionable (yellow card, YC) offence but it was not seen by the referee on the field. Can the VAR inform the referee so the offence can be reviewed?",
+            decision_en: "No – the VAR can only intervene in relation to direct red cards, not yellow cards (including second yellow cards).",
+            scenario_ko: "한 선수가 두 번째 경고성(옐로카드) 반칙을 범했으나 경기장의 주심이 이를 보지 못했다. VAR이 주심에게 이를 알려 해당 반칙을 리뷰할 수 있는가?",
+            decision_ko: "아니요. VAR은 옐로카드(두 번째 옐로카드 포함)가 아닌 다이렉트 레드카드와 관련된 상황에만 개입할 수 있다.",
+            key_point: "VAR의 개입 범위는 득점, 페널티킥, 다이렉트 퇴장, 신원 오인으로 제한되며 경고 상황은 리뷰 대상이 아니다."
+        },
+        {
+            category: 5,
+            number: 58,
+            title: "온필드리뷰 없이 VAR의 정보만으로 주심이 최종 결정을 내릴 수 있는지 여부",
+            scenario_en: "Can the referee make a decision based only on the information received from the video assistant referee (VAR)?",
+            decision_en: "Yes. Once the review is initiated, the referee has the option to review the replay footage directly. A VAR-only review is usually only appropriate for factual decisions e.g. position of an offence or player (offside), point of contact (handball/foul), location (inside or outside the penalty area). However, with both a VAR-only review and an on-field review, it is the referee who makes the final decision, not the VAR.",
+            scenario_ko: "주심이 VAR로부터 받은 정보만을 바탕으로 판정을 내릴 수 있는가?",
+            decision_ko: "네. 리뷰가 시작되면 주심은 리플레이 영상을 직접 확인할 수 있는 옵션이 있다. ‘VAR 심판만 리뷰’하는 것은 주로 반칙이나 선수의 위치(오프사이드), 접촉 부위(핸드볼/파울), 위치(페널티 에어리어 안/밖) 등 팩트에 관한 판정에 적절하다. 하지만 VAR 심판만 리뷰하든 온필드리뷰를 하든, 최종 판정을 내리는 사람은 VAR 심판이 아니라 주심이다.",
+            key_point: "팩트 확인은 VAR의 정보만으로 가능하지만, 모든 상황에서 최종적인 결정권은 항상 주심에게 있다."
+        },
+        {
+            category: 5,
+            number: 59,
+            title: "레드카드를 받은 선수가 경기장을 떠나기 전 또 다른 퇴장성 반칙을 범한 경우",
+            scenario_en: "A player is shown a red card (RC) and then commits another sending-off (RC) offence before leaving the field of play. Should the referee show the RC again? How long will the player be suspended?",
+            decision_en: "Both offences are reported by the referee but the second RC is not shown. The length of the suspension is defined by competition/disciplinary rules, not by the Laws of the Game. The decision is made by the appropriate disciplinary committee.",
+            scenario_ko: "한 선수가 레드카드(RC)를 받은 후, 경기장을 떠나기 전에 또 다른 퇴장성(RC) 반칙을 범한다. 주심이 레드카드를 다시 보여주어야 하는가? 해당 선수는 얼마 동안 출전 정지되는가?",
+            decision_ko: "두 가지 반칙 모두 주심에 의해 보고되지만 두 번째 레드카드는 제시하지 않는다. 출전 정지 기간은 경기규칙이 아니라 대회/징계 규정에 의해 정의된다. 해당 결정은 관련 징계 위원회에 의해 내려진다.",
+            key_point: "이미 퇴장 명령을 받은 선수에게 추가 레드카드를 보여줄 필요는 없으나, 모든 추가 위반 사항은 보고서에 기록되어야 한다."
+        },
+        {
+            category: 5,
+            number: 60,
+            title: "페널티킥 도중 골키퍼의 반칙에 대해 VAR 도움을 받을 수 있는지 여부",
+            scenario_en: "A goalkeeper committed an offence while a penalty kick was taken and then saved a kick. Is the use of VAR allowed in this situation?",
+            decision_en: "Yes. The referee may receive assistance from the VAR in case of offence by the goalkeeper and/or kicker at the taking of a penalty kick.",
+            scenario_ko: "페널티킥을 하는 도중 골키퍼가 반칙을 범한 뒤 킥을 세이브한다. 이 상황에서 VAR의 사용이 허용되는가?",
+            decision_ko: "네. 주심은 페널티킥 시 골키퍼 그리고/또는 키커의 반칙이 발생한 경우 VAR의 도움을 받을 수 있다.",
+            key_point: "페널티킥 과정에서 발생한 골키퍼나 키커의 규정 위반은 VAR 리뷰 가능 카테고리에 포함된다."
+        },
+        {
+            category: 5,
+            number: 61,
+            title: "오프사이드 위치의 선수에게 패스한 후 공격수가 파울을 당한 경우의 우선순위",
+            scenario_en: "An attacking team player is fouled after he/she has passed the ball to a team-mate who was in an offside position when the pass was made.",
+            decision_en: "What is the referee’s decision? Whichever offence occurs first is penalised so the foul is only penalised if it occurs before the player in an offside position commits an offside offence (e.g. touched the ball). If both offences occur at the same time the foul is penalised as it is more serious i.e. offside is punished with an indirect free kick whereas the foul is punished with a direct free kick.",
+            scenario_ko: "공격팀 선수가 패스를 할 당시 오프사이드 위치에 있던 동료에게 볼을 패스한 후 파울을 당한다.",
+            decision_ko: "주심의 판정은 무엇인가? 먼저 발생한 반칙이 처벌되므로, 오프사이드 위치에 있던 선수가 오프사이드 반칙(예: 볼 터치)을 범하기 전에 파울이 발생했다면 파울만 처벌된다. 두 반칙이 동시에 발생했다면 파울이 더 심한 것으로 간주되어 처벌된다. 즉, 오프사이드는 간접 프리킥으로 처벌되지만 파울은 직접 프리킥으로 처벌되기 때문이다.",
+            key_point: "시간상 먼저 발생한 반칙을 우선 처벌하며, 동시에 발생한 경우 재개 방법이 더 무거운 직접 프리킥 파울을 우선한다."
+        },
+        {
+            category: 5,
+            number: 62,
+            title: "페널티킥 키커가 해당 반칙과 무관하게 입은 부상을 경기장에서 치료받을 수 있는지 여부",
+            scenario_en: "An injured player may be treated on the field of play when a penalty kick has been awarded and this player will be the kicker. Does this Law apply also if the player was not injured by the offence which resulted in the award of the penalty kick?",
+            decision_en: "Yes, the referee should allow quick treatment on the field of play before the penalty kick is taken as it would be unfair if the team’s kicker has to leave the field and cannot take the penalty kick.",
+            scenario_ko: "페널티킥이 주어졌을 때 부상당한 선수가 키커라면 경기장 안에서 치료를 받을 수 있다. 만약 해당 선수가 페널티킥을 유발한 그 반칙에 의해 부상당한 것이 아니더라도 이 규칙이 적용되는가?",
+            decision_ko: "네, 주심은 페널티킥을 하기 전에 경기장 내에서 신속한 치료를 허용해야 한다. 팀의 키커가 경기장을 떠나야 해서 페널티킥을 할 수 없게 된다면 불공평하기 때문이다.",
+            key_point: "페널티킥의 키커가 부상을 입은 경우, 부상의 원인과 상관없이 신속한 치료를 위해 경기장에 남는 것이 허용된다."
+        },
+        {
+            category: 5,
+            number: 63,
+            title: "치료를 위해 나갔던 선수가 복귀 전 경기장 밖에서 스로인을 할 수 있는지 여부",
+            scenario_en: "A player who has left the field of play for treatment signals that he/she is ready to re-enter the field and wants to take the throw-in. Is the player allowed to take the throw-in before first entering the field of play?",
+            decision_en: "The player can take the throw-in if: play has restarted between the player leaving the field for treatment and the player’s request and before taking the throw-in, the player enters the field of play – this need only involves touching the touchline with their foot.",
+            scenario_ko: "치료를 위해 경기장을 떠났던 선수가 복귀 준비가 되었음을 알리며 스로인을 하기를 원한다. 이 선수가 경기장에 먼저 들어오기 전에 스로인을 하는 것이 허용되는가?",
+            decision_ko: "해당 선수는 다음의 경우 스로인을 할 수 있다: 선수가 치료를 위해 경기장을 떠난 시점과 선수의 요청 사이에 이미 경기가 재개되었고, 그리고 스로인을 하기 전에 선수가 경기장 안으로 들어온 경우. 이는 발로 터치라인을 밟는 것만으로도 충분하다.",
+            key_point: "치료를 위해 나갔던 선수가 복귀하려면 주심의 허락을 받아야 하며, 스로인을 직접 하기 위해서는 먼저 경기장 경계 내로 입장해야 한다."
+        },
+        {
+            category: 5,
+            number: 64,
+            title: "부심의 신호를 주심이 보지 못해 경기가 재개된 후에도 징계 조치가 가능한지 여부",
+            scenario_en: "A player has committed a cautionable (yellow card, YC)/sending-off (red card, RC) offence when the ball is in play. An assistant referee indicates/communicates the offence but the referee does not see the indication/hear the communication until after play has restarted. May the referee still show a YC/RC?",
+            decision_en: "Yes, a disciplinary sanction may (only) be issued after play has restarted if another match official had identified and attempted to communicate the offence to the referee before play restarted subject also to the provisions of Law 12.3 and the VAR protocol.",
+            scenario_ko: "볼이 인플레이 상황에서 한 선수가 경고(옐로카드) 또는 퇴장(레드카드)성 반칙을 범한다. 부심이 이 반칙을 표시하거나 소통하려 했으나, 주심은 플레이가 재개된 이후에야 그 신호를 보거나 소통 내용을 듣는다. 주심이 여전히 옐로카드나 레드카드를 보여줄 수 있는가?",
+            decision_ko: "네, 경기규칙 제12조 3항 및 VAR 프로토콜의 규정에 따라, 다른 심판진이 플레이 재개 전에 반칙을 확인하고 주심과 소통하려 시도했다면 플레이 재개 후에도 징계 조치(만)를 내릴 수 있다.",
+            key_point: "심판진 간의 소통 오류로 플레이가 재개되었더라도, 재개 전 반칙이 인지되었다면 징계 조치는 사후에도 가능하다."
+        },
+        {
+            category: 5,
+            number: 65,
+            title: "기술 지역에서 물체를 던진 범인을 특정할 수 없는 경우의 징계 대상",
+            scenario_en: "One of the team officials deliberately throws a bottle onto the field of play. What is the referee’s decision if the offender cannot be identified?",
+            decision_en: "Deliberately throwing or kicking an object onto the field of play is punished with a sending-off (red card, RC). The senior coach (usually the main coach) present in the technical area will receive the sanction – as the person responsible for other team officials.",
+            scenario_ko: "팀 임원 중 한 명이 의도적으로 경기장 안으로 물병을 던진다. 위반자를 특정할 수 없는 경우 주심의 판정은 무엇인가?",
+            decision_ko: "경기장 안으로 물체를 의도적으로 던지거나 차 넣는 행위는 퇴장(레드카드)으로 처벌된다. 반칙을 저지른 사람을 지목할 수 없다면, 다른 팀 임원들에 대한 책임이 있는 기술 지역 내의 가장 높은 지위에 있는 지도자(주로 감독)가 그 제재를 받게 된다.",
+            key_point: "기술 지역 내에서 발생한 반칙의 당사자를 특정할 수 없을 때는 해당 구역의 최고 책임자인 지도자에게 책임을 묻는다."
+        },
+        {
+            category: 5,
+            number: 66,
+            title: "유망한 공격 저지 반칙 후 어드밴티지 상황에서 동일 선수가 다시 경고성 반칙을 범한 경우",
+            scenario_en: "A player commits a cautionable (yellow card, YC) offence but the referee allows play to continue. After that, the same player commits a second YC offence. What is the referee's decision?",
+            decision_en: "The player will be shown a yellow card, then the second yellow card and – as a result – the red card and sent off unless the first offence was 'interfering with or stopping a promising attack' in which case this offence does not receive a yellow card (as the advantage effectively restored the promising attack).",
+            scenario_ko: "한 선수가 경고성(옐로카드) 반칙을 범했으나 주심이 플레이를 계속하도록 허용한다. 그 후, 동일한 선수가 두 번째 경고성 반칙을 범한다.",
+            decision_ko: "주심의 판정은 무엇인가? 해당 선수에게 옐로카드를 보여준 뒤, 이어서 두 번째 옐로카드를 보여주고 결과적으로 레드카드를 제시하여 퇴장시킨다. 단, 첫 번째 반칙이 '유망한 공격을 방해하거나 저지'한 것이었다면 (어드밴티지로 인해 공격이 유효하게 회복되었으므로) 해당 반칙에 대해서는 옐로카드를 주지 않는다.",
+            key_point: "어드밴티지 적용 시 유망한 공격 저지에 대한 경고는 취소되지만, 반칙 자체가 무모한 것이었거나 별도의 경고성 반칙이 추가되었다면 각각 처벌한다."
+        },
+        // 6조 부심 데이터
+        {
+            category: 6,
+            number: 1,
+            title: "판정에 대한 항의 시 징계 조치 및 경기 재개",
+            scenario_en: "Team A player moves with the ball close to the touchline and the ball briefly goes out of play. The assistant referee indicates that the whole of the ball has left the field and that Team B is entitled to take a throw-in. Team A player approaches the assistant referee and shows dissent from this decision.",
+            decision_en: "What does the referee do? Team A player must be cautioned. Public protest or disagreement (verbal and/or physical) with a decision is punishable by a yellow card regardless of whether it is directed at the referee, assistant referee or any other match official. Play is restarted according to the previous decision (throw-in for Team B).",
+            scenario_ko: "A팀 선수가 터치라인 근처에서 볼을 가지고 이동하던 중 볼이 잠시 경기장 밖으로 나갔습니다. 부심은 볼 전체가 경기장을 벗어났으며 B팀에게 스로인 권한이 있음을 표시했습니다. A팀 선수가 부심에게 접근하여 이 판정에 대해 항의를 표시합니다.",
+            decision_ko: "주심은 어떤 조치를 취해야 합니까? A팀 선수는 반드시 경고를 받아야 합니다. 판정에 대한 공개적인 항의나 반대(말 그리고/또는 몸짓으로)는 주심, 부심 또는 다른 어떤 심판진을 대상으로 하든 상관없이 옐로카드로 처벌받을 수 있습니다. 경기는 이전의 판정(B팀의 스로인)에 따라 재개됩니다.",
+            key_point: "심판진의 판정은 항상 존중받아야 하며, 주심이나 부심 등 심판진의 결정에 대해 말이나 행동으로 항의하는 선수(교체 선수 포함)에게는 반드시 경고(옐로카드)가 주어져야 합니다."
+        },
+        {
+            category: 6,
+            number: 2,
+            title: "잘못된 선수의 스로인 실시 시 판정",
+            scenario_en: "The ball goes out of play while two players are challenging for it near the touchline. The assistant referee indicates that the throw-in is awarded to Team A but a Team B player quickly picks up the ball and throws it onto the field before the referee intervenes.",
+            decision_en: "What is the correct decision? The throw-in is retaken by Team A from the same position. There is no disciplinary sanction for the Team B player.",
+            scenario_ko: "터치라인 근처에서 두 선수가 경합하던 중 볼이 경기장 밖으로 나갔습니다. 부심은 A팀에게 스로인이 주어졌음을 표시했으나, 주심이 개입하기 전에 B팀 선수가 재빨리 볼을 집어 들어 경기장 안으로 던졌습니다.",
+            decision_ko: "올바른 판정은 무엇입니까? A팀이 같은 위치에서 스로인을 다시 실시합니다. B팀 선수에 대한 별도의 징계 조치는 없습니다.",
+            key_point: "스로인은 볼이 터치라인을 넘어갔을 때 마지막으로 터치한 선수의 상대 팀에게 주어집니다. 판정과 다르게 다른 팀 선수가 스로인을 실시했을 경우, 정확한 권한을 가진 팀이 절차에 따라 다시 실시해야 합니다."
+        },
+        {
+            category: 6,
+            number: 3,
+            title: "예비부심의 주심 보조 권한 범위",
+            scenario_en: "A player illegally challenged an opponent close to the touchline and the reserve assistant referee’s position. The incident occurred out of the vision of the referee who is unsure if there was an offence. May the reserve assistant referee be asked for advice if they had a clearer view than the referee?",
+            decision_en: "Yes, the reserve assistant referee is permitted to assist the referee in the same way as the other ‘on-field’ match officials.",
+            scenario_ko: "한 선수가 터치라인 및 예비부심의 위치 근처에서 상대 선수에게 불법적으로 도전했습니다. 이 사건은 주심의 시야 밖에서 발생하여 주심은 반칙 여부를 확신하지 못하고 있습니다. 예비부심이 주심보다 더 명확한 시야를 확보했다면 그에게 조언을 구할 수 있습니까?",
+            decision_ko: "네, 예비부심은 다른 ‘필드 위’ 심판진과 동일한 태도로 주심을 보조할 수 있도록 허용됩니다.",
+            key_point: "예비부심은 부심, 대기심 또는 추가부심이 역할을 계속할 수 없을 때 대체할 수 있을 뿐만 아니라, 다른 필드 위 심판진들과 동일하게 주심을 보조할 수 있는 권한을 갖습니다."
+        },
+        {
+            category: 6,
+            number: 4,
+            title: "주심 부상 시 업무 대행자 결정",
+            scenario_en: "The referee is injured during the match and unable to continue. Who will replace the referee?",
+            decision_en: "Competition rules must state clearly who replaces a match official who is unable to start or continue and any associated changes. In particular, it must be clear whether, if the referee is unable to start or continue, the fourth official or the senior assistant referee or senior additional assistant referee takes over.",
+            scenario_ko: "경기 도중 주심이 부상을 당해 경기를 계속할 수 없게 되었습니다. 누가 주심을 대체하게 됩니까?",
+            decision_ko: "대회 규정에는 심판진이 경기를 시작하거나 계속할 수 없을 때 누가 그 역할을 대체할 것인지와 그에 따른 변경 사항을 명확히 명시해야 합니다. 특히 주심이 경기를 시작하거나 계속할 수 없는 상황에서 대기심, 선임 부심 또는 선임 추가부심 중 누가 업무를 인계받을 것인지가 명확해야 합니다.",
+            key_point: "심판진의 부상 등 수행 불능 상황에 대비하여 대회 규정에는 반드시 대체 인력의 우선순위가 명시되어야 하며, 일반적으로 대기심, 선임 부심 또는 선임 추가부심이 주심의 임무를 대행하게 됩니다."
+        }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const containers = {
+            5: document.querySelector('section:nth-of-type(1) .space-y-4'),
+            6: document.querySelector('section:nth-of-type(2) .space-y-4')
+        };
+        
+        qaData.forEach(item => {
+            const container = containers[item.category];
+            if (!container) return;
+
+            const qaItem = document.createElement('div');
+            qaItem.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden';
+            qaItem.setAttribute('data-accordion-item', '');
+
+            qaItem.innerHTML = `
+                <button data-accordion-header class="w-full text-left p-4 flex justify-between items-center cursor-pointer hover:bg-green-50 dark:hover:bg-gray-700 transition-colors focus:outline-none">
+                    <span class="font-semibold text-lg text-gray-800 dark:text-white">${item.number}. ${item.title}</span>
+                    <span data-accordion-icon class="text-2xl font-light text-green-600 dark:text-green-400 transform transition-transform">➕</span>
+                </button>
+                <div data-accordion-content class="px-6 pb-6">
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 dark:bg-blue-900/50 p-4 rounded-md mt-4">
+                            <h4 class="font-bold mb-2 text-blue-800 dark:text-blue-300">🇬🇧 English Scenario & Decision</h4>
+                            <p class="font-mono text-sm text-blue-700 dark:text-blue-200"><strong>Scenario:</strong> ${item.scenario_en}</p>
+                            <p class="font-mono text-sm mt-2 text-blue-700 dark:text-blue-200">${item.decision_en.replace('What is the correct decision? ', '<strong>Decision:</strong> ')}</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2 text-gray-700 dark:text-gray-300">🇰🇷 한국어 상황 및 판정</h4>
+                            <p class="mb-2"><strong>상황:</strong> ${item.scenario_ko}</p>
+                            <p>${item.decision_ko.replace('올바른 판정은 무엇입니까? ', '<strong>판정:</strong> ').replace('이 경우 올바른 절차는 무엇인가?', '<strong>절차:</strong> ').replace('주장에 대해 어떤 조치를 취할 수 있습니까?', '<strong>조치:</strong> ').replace('해당 선수에게 어떤 조치를 취할 수 있습니까?', '<strong>조치:</strong> ').replace('올바른 절차는 무엇입니까?', '<strong>절차:</strong> ').replace('올바른 경기 재개 방법과 징계 조치는 무엇입니까?', '<strong>재개 및 징계:</strong> ').replace('판정은 무엇입니까?', '<strong>판정:</strong> ').replace('주심의 판정은 무엇입니까?', '<strong>판정:</strong> ').replace('플레이는 어떻게 재개됩니까?', '<strong>재개:</strong> ').replace('이 상황에서의 올바른 절차는 무엇입니까?', '<strong>절차:</strong> ')}</p>
+                        </div>
+                        <div class="bg-yellow-100 dark:bg-yellow-800/60 p-4 rounded-lg border-l-4 border-yellow-400">
+                            <p class="font-semibold text-yellow-800 dark:text-yellow-200">💡 <strong>핵심 포인트:</strong> ${item.key_point}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(qaItem);
+        });
+
+        // Accordion Logic
+        const accordionItems = document.querySelectorAll('[data-accordion-item]');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('[data-accordion-header]');
+            const content = item.querySelector('[data-accordion-content]');
+            const icon = item.querySelector('[data-accordion-icon]');
+
+            header.addEventListener('click', () => {
+                const isHidden = content.style.maxHeight === '0px' || !content.style.maxHeight;
+                
+                if (isHidden) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.add('rotate-45');
+                    icon.textContent = '✖️';
+                } else {
+                    content.style.maxHeight = '0px';
+                    icon.classList.remove('rotate-45');
+                    icon.textContent = '➕';
+                }
+            });
+        });
+
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('keyup', (e) => {
+            const filter = e.target.value.toLowerCase().trim();
+            accordionItems.forEach(item => {
+                const itemText = item.textContent.toLowerCase();
+                if (itemText.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Expand/Collapse All Logic
+        const expandAllBtn = document.getElementById('expandAll');
+        const collapseAllBtn = document.getElementById('collapseAll');
+
+        expandAllBtn.addEventListener('click', () => {
+            accordionItems.forEach(item => {
+                if (item.style.display !== 'none') { // Only affect visible items
+                    const content = item.querySelector('[data-accordion-content]');
+                    const icon = item.querySelector('[data-accordion-icon]');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.add('rotate-45');
+                    icon.textContent = '✖️';
+                }
+            });
+        });
+
+        collapseAllBtn.addEventListener('click', () => {
+            accordionItems.forEach(item => {
+                const content = item.querySelector('[data-accordion-content]');
+                const icon = item.querySelector('[data-accordion-icon]');
+                content.style.maxHeight = '0px';
+                icon.classList.remove('rotate-45');
+                icon.textContent = '➕';
+            });
+        });
+
+    });
+</script>
+
+</body>
+</html>
